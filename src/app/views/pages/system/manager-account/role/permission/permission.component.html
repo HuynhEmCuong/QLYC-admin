@@ -1,0 +1,66 @@
+<div
+  bsModal
+  #childModal="bs-modal"
+  [config]="{ ignoreBackdropClick: true}"
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-child-name"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content animated fadeIn">
+      <form action="your-action" (submit)="fnSave()">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">
+          Phân quyền theo chức năng
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+          <i class="dx-icon dx-icon-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="check-all-function mb-4">
+          <dx-check-box  [(value)]="checkedBox"  text="Chọn/bỏ chọn tất cả các Chức năng" (onValueChanged)="checkAll($event)"></dx-check-box>
+        </div>
+        <dx-data-grid #dataGrid
+                [dataSource]="functionsParrent"
+                [errorRowEnabled]="false"
+                [remoteOperations]="true"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [allowColumnResizing]="true"
+                keyExpr="FunctionId"
+                [masterDetail]="{ enabled: true, template: 'detail' }"
+                (onCellClick) ="checkRowChange($event)"
+                [focusedRowEnabled]="true" columnResizingMode="widget">
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-editing [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                  <dxo-texts confirmDeleteMessage="Are you sure Delete?"></dxo-texts>
+                </dxo-editing>
+                <dxi-column [allowEditing]="false" dataField="FunctionName" caption="Tên chức năng"></dxi-column>
+                <dxi-column [width]="90" dataField="CheckRow" caption="Tất cả" dataType="boolean"></dxi-column>
+                <dxi-column [width]="90" dataField="CanRead" caption="Xem" dataType="boolean"></dxi-column>
+                <dxi-column [width]="90" dataField="CanCreate" caption="Thêm" dataType="boolean"></dxi-column>
+                <dxi-column [width]="90" dataField="CanUpdate" caption="Sửa" dataType="boolean"></dxi-column>
+                <dxi-column [width]="90" dataField="CanDelete" caption="Xóa"  dataType="boolean"></dxi-column>
+                <div *dxTemplate="let item of 'detail'">
+                  <app-grid-detail [functions]="functions" [id]="item.data.FunctionId"></app-grid-detail>
+                </div>
+              </dx-data-grid>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary waves-effect waves-light mr-1" type="button"
+        (click)="childModal.hide()"><span class="btn-label"><i
+            class="fa fa-times"></i></span>Đóng</button>
+      <button  [ladda]="isLoading"
+        class="btn btn-info waves-effect waves-light mr-1" type="button" (click)="fnSave()">
+          <span class="btn-label"><i class="fa fa-check"></i></span>Lưu
+      </button>
+
+
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

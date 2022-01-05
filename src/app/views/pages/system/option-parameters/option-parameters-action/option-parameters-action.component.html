@@ -1,0 +1,59 @@
+<div
+  bsModal
+  #childModal="bs-modal"
+  [config]="{ ignoreBackdropClick: true}"
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-child-name"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content animated fadeIn">
+      <form action="your-action" (submit)="fnSave()">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">
+            Thông tin tham số
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+          <i class="dx-icon dx-icon-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <dx-form #targetForm id="form" [(formData)]="entity" labelLocation="left">
+          <dxi-item itemType="group" [colCount]="2">
+
+            <dxi-item dataField="Code" [label]="{text: 'Mã tham số'}" [editorOptions]="{ stylingMode :'outlined', placeholder: 'Mã tham số', readOnly:entity.Id>0?true:false}" >
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+              <dxi-validation-rule type="async" message="Mã phải là chuỗi viết liền không dấu"
+              [validationCallback]="validateCode"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="ParameterValue" [label]="{text: 'Giá trị tham số'}"  [editorOptions]="{ stylingMode :'outlined', placeholder: 'Giá trị tham số'}" >
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="Description" [colSpan]="2" [label]="{text: 'Mô tả'}"  [editorOptions]="{ stylingMode :'outlined', placeholder: 'Mô tả'}"></dxi-item>
+          </dxi-item>
+        </dx-form>
+
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-right">
+              <div>
+                <button class="btn btn-secondary waves-effect waves-light mr-1" type="button"
+                  (click)="childModal.hide()"><span class="btn-label"><i
+                      class="fa fa-times"></i></span>Đóng</button>
+                <button [ladda]="isLoading"
+                  *rbacAllowArr="[{Action: 'UPDATE', Code:'PARAMETER', Operator:'OR'}, {Action: 'CREATE', Code:'PARAMETER', Operator:'OR'}]"
+                  class="btn btn-info waves-effect waves-light mr-1" type="button" (click)="fnSave()">
+                    <span class="btn-label"><i class="fa fa-check"></i></span>Lưu
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

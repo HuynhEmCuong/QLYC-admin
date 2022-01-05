@@ -1,0 +1,110 @@
+<div class="row page-titles">
+  <div class="col-md-5 col-8 align-self-center">
+    <h3 class="text-themecolor">Thông tin cá nhân</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/pages/dashboard']">Trang chủ</a></li>
+      <li class="breadcrumb-item active">Thông tin cá nhân</li>
+    </ol>
+  </div>
+  <div class="col-md-7">
+
+  </div>
+</div>
+  <!-- Row -->
+  <div class="row">
+      <!-- Column -->
+      <div class="col-lg-4 col-xlg-3 col-md-5">
+          <div class="card">
+              <div class="card-body">
+                  <div class="m-t-30 text-center" > <img [src]="user.Avatar|image:true"  class="img-circle img-avatar" width="150" />
+                      <h4 class="card-title m-t-10">{{user.Name}}</h4>
+                      <h6 class="card-subtitle">Đang cảm thấy hào hứng :)</h6>
+                      <div class="row text-center justify-content-md-center">
+                         <button class="btn btn-info mr-1"  data-toggle="modal" data-target="#modal-change-password" data-whatever="@fat"><i class="fa fa-user-lock"></i> Đổi mật khẩu</button>
+                         <button class="btn btn-warning" (click)="authService.logout()"><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
+                      </div>
+
+                  </div>
+                  <div class="modal fade" id="modal-change-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel1">Thông tin mật khẩu</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Mật khẩu mới:</label>
+                                        <input [(ngModel)]="modelPassword.newPassword" name="newPassword" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="control-label">Nhập lại mật khẩu mới:</label>
+                                        <input [(ngModel)]="modelPassword.reNewPassword" name="reNewPassword" type="text" class="form-control" >
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info" (click)="changePassword()">Đổi mật khẩu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div>
+                  <hr> </div>
+              <div class="card-body">
+                    <small class="text-muted">Nhóm quyền </small>
+                    <h6>
+                        <span class="label label-success mr-1" *ngFor="let item of user.Roles">
+                            {{item}}
+                        </span>
+                    </h6>
+                  <small class="text-muted">Địa chỉ Email </small>
+                  <h6>{{user.Email}}</h6>
+                   <small class="text-muted pt-3 db">Số điện thoại 1</small>
+                  <h6>{{user.PhoneNumber}}</h6>
+                  <small class="text-muted pt-3 db">Số điện thoại 2</small>
+                  <h6>{{user.PhoneNumber1}}</h6>
+                  <small class="text-muted pt-3 db">Địa chỉ</small>
+                  <h6>{{user.Address}}</h6>
+                  <br/>
+              </div>
+          </div>
+      </div>
+      <!-- Column -->
+      <!-- Column -->
+      <div class="col-lg-8 col-xlg-9 col-md-7">
+          <div class="card">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs profile-tab" role="tablist">
+                  <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+                    <i class="fa fa-bell"></i> &nbsp;
+                    Tất cả thông báo</a> </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                  <div class="tab-pane active" id="home" role="tabpanel">
+                    <div class="card-body">
+                      <div class="btn-group m-b-10 m-r-10" role="group" aria-label="Button group with nested dropdown">
+                          <button type="button" class="btn btn-secondary font-18 text-dark" ><i class="mdi mdi-reload font-18"></i></button>
+                          <button type="button" class="btn btn-secondary font-18 text-dark" ><i class="mdi mdi-delete"></i></button>
+                      </div>
+
+                  </div>
+                  <div class="card-body p-t-0">
+
+                      <div class="alert alert-warning alert-rounded" *ngIf="pager.Result?.length==0">
+                        <i class="fa fa-bell"></i>
+                          Không có thông báo nào !
+                      </div>
+                  </div>
+
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <!-- Column -->
+  </div>

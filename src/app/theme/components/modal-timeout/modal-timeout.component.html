@@ -1,0 +1,18 @@
+<div id="idle-timeout-dialog" data-backdrop="static" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Phiên làm việc sắp hết hạn</h4>
+          </div>
+          <div class="modal-body">
+              <p>
+                  <i class="fa fa-warning font-red"></i> Phiên làm việc của bạn sẽ bị đăng xuất trong {{second}}
+                  <span id="idle-timeout-counter"></span> giây.</p>
+              <p> Bạn có muốn tiếp tục làm việc? </p>
+          </div>
+          <div class="modal-footer text-center">
+              <button id="idle-timeout-dialog-keepalive" type="button" class="btn btn-info" (click)="refreshToken()">Đồng ý</button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.img-avatar{
+  height: 140px;
+}
+
+.unread .eye{
+  color: #1e88e5;
+}
+
+.read .eye{
+  color: #f44336;
+}

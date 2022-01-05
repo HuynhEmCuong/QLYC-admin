@@ -1,0 +1,105 @@
+<div class="row page-titles">
+  <div class="col-md-5 col-8 align-self-center">
+    <h3 class="text-themecolor">Danh mục tài khoản</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/pages/dashboard']">Trang chủ</a></li>
+      <li class="breadcrumb-item active">Danh sách tài khoản</li>
+    </ol>
+  </div>
+  <div class="col-md-7">
+
+  </div>
+</div>
+
+<div class="row">
+  <!-- Column -->
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 form-group text-right">
+            <div class="col-12 form-group text-right">
+              <button class="btn btn-info mr-1" (click)="modalChild.showChildModal(null)" *rbacAllow="{Action:'CREATE',Code:'USER'}">
+                <span  class="btn-label"> <i class="fa fa-plus"></i></span> Thêm mới
+              </button>
+              <button class="btn btn-secondary mr-1" (click)="reloadGrid()">
+                <span  class="btn-label"> <i class="fa fa-sync"></i></span> Làm mới
+              </button>
+            </div>
+          <div class="col-12">
+            <dx-data-grid  #dataGrid
+              [dataSource]="dataSource"
+              [errorRowEnabled]="false"
+              [remoteOperations]="true"
+              [showBorders]="true"
+              [showRowLines]="true"
+              [showColumnLines]="true"
+              class="m-grid-5"
+              [allowColumnResizing]="true"
+              noDataText="Không có dữ liệu !"
+              [focusedRowEnabled]="true" columnResizingMode="widget">
+              <!-- Option grid -->
+              <dxo-selection mode="single"></dxo-selection>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-editing [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                <dxo-texts confirmDeleteMessage=" Bạn có chắc chắn muốn xóa bản ghi này không?"></dxo-texts>
+              </dxo-editing>
+              <dxo-paging [pageSize]="10"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true"
+              [allowedPageSizes]="[5,10,25, 50, 100]"
+              [showPageSizeSelector]="true"
+              [showNavigationButtons]="true"
+              [showInfo]="true"
+              infoText="Trang #{0}. Tổng: {1} ({2} danh mục sản phẩm
+              )">
+              ></dxo-pager>
+              <!-- End option grid -->
+              <!-- Colume grid -->
+
+              <dxi-column  dataField="Avatar" caption="Hình ảnh" cellTemplate="avatarTemplate"></dxi-column>
+              <div *dxTemplate="let data of 'avatarTemplate'">
+                <div class="img-grid">
+                  <a data-fancybox="gallery" [href]="data.value | image:true">
+                    <img class="img-reponsive" [src]="data.value | image:true" />
+                  </a>
+                </div>
+
+              </div>
+              <dxi-column  dataField="UserName" caption="Tên tài khoản" ></dxi-column>
+              <dxi-column  dataField="Name" caption="Tên người dùng" ></dxi-column>
+              <dxi-column  dataField="PhoneNumber" caption="Số điện thoại" ></dxi-column>
+              <dxi-column  dataField="BirthDay" caption="Ngày sinh"dataType="date"  format="dd/MM/yyyy" ></dxi-column>
+              <dxi-column  dataField="Address" caption="Địa chỉ" ></dxi-column>
+              <dxi-column  dataField="Position" caption="Vị trí" ></dxi-column>
+              <dxi-column  dataField="Status" caption="Trạng thái" >
+                <dxo-lookup [dataSource]="dataSourceStatus" displayExpr="Name_Vi" valueExpr="Value"></dxo-lookup>
+              </dxi-column>
+              <dxi-column  dataField="CreateDate" caption="Ngày tạo" dataType="date"  format="dd/MM/yyyy HH:mm"></dxi-column>
+
+              <dxi-column type="buttons">
+                <dxi-button
+                *rbacAllowArr="[{Action: 'UPDATE', Code:'USER', Operator:'OR'}, {Action: 'READ', Code:'USER', Operator:''}]"
+                    hint="Chỉnh sửa"
+                    icon="edit"
+                    [visible]="1"
+                    [onClick]="showModal"></dxi-button>
+                    <dxi-button
+                    *rbacAllow="{Action:'DELETE',Code:'USER'}"
+                    icon="trash"
+                    [visible]="1"
+                    [onClick]="fnDelete"></dxi-button>
+                <dxi-button
+                    icon="pulldown"
+                    hint="Đặt lại mật khẩu"
+                    [visible]="1"
+                    [onClick]="resetPassword"></dxi-button>
+              </dxi-column>
+            </dx-data-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-user-action  #modalChild (loadInit)="loadInit()"></app-user-action>

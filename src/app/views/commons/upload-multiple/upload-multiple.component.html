@@ -1,0 +1,62 @@
+<div *ngIf="options.IsUploadImage; then thenBlock else elseBlock"></div>
+<ng-template  #thenBlock>
+  <div class="row">
+      <div class="col-md-8">
+        <small>
+          <i>(*) Ảnh hỗ trợ: *.jpg, *.jpeg, *.gif, *.png. Hỗ trợ upload đồng thời nhiều ảnh </i>
+        </small>
+      </div>
+      <div class="col-md-4 text-right">
+        <button type="button" class="btn btn-info  mb-3" (click)="dropImage.showFileSelector()">
+          <i class="fa fa-upload"></i>
+          Chọn ảnh tải lên
+        </button>
+    </div>
+  </div>
+  <ngx-dropzone  #dropImage (change)="onSelect($event)" [expandable]="true" accept="image/*" [disableClick]="true" id="dropZoneImage">
+    <ngx-dropzone-label>Kéo thả hình vào đây!</ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of filesCheck" [file]="f.File" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>
+              <div class="file-download">
+                  <p   [title]="f.File.name" class="name-image">{{f.File.name | compactFile}}</p>
+                  <button type="button" class="btn btn-success" (click)="dowloadFile(f.File)">
+                    <i class="fa fa-cloud-download-alt"></i>
+                    Tải xuống
+                  </button>
+              </div>
+          </ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+  </ngx-dropzone>
+</ng-template>
+<ng-template  #elseBlock>
+  <div class="row">
+    <div class="col-md-8">
+      <small>
+        <i>(*) Hỗ trợ upload đồng thời nhiều file </i>
+      </small>
+    </div>
+    <div class="col-md-4 text-right">
+      <button type="button" class="btn btn-info  mb-3" (click)="dropFile.showFileSelector()">
+        <i class="fa fa-upload"></i>
+        Chọn file tải lên
+      </button>
+    </div>
+  </div>
+  <ngx-dropzone  #dropFile (change)="onSelect($event)" [expandable]="true" [disableClick]="true" id="dropZonFile" >
+    <ngx-dropzone-label>Kéo thả file vào đây!</ngx-dropzone-label>
+        <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of filesCheck" [file]="f.File" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>
+            <p  [title]="f.File.name" style="text-align: center;">{{f.File.name | compactFile}}</p>
+            <button type="button" class="btn btn-success" (click)="dowloadFile(f.File)">
+              <i class="fa fa-cloud-download-alt"></i>
+              Tải xuống
+            </button>
+          </ngx-dropzone-label>
+        </ngx-dropzone-preview>
+  </ngx-dropzone>
+</ng-template>
+
+
+<div class="progress m-t-30" *ngIf="processUpload>0">
+  <div class="progress-bar bg-warning active progress-bar-striped" [style.width.%]="processUpload" role="progressbar"> <span class="sr-only">{{processUpload}}%</span> </div>
+</div>

@@ -1,0 +1,20 @@
+<dx-html-editor height="150px" [(value)]="inputContent" (onValueChanged)="onValueChanged($event)">
+  <dxo-toolbar [multiline]="true">
+    <dxi-item formatName="bold"></dxi-item>
+    <dxi-item formatName="italic"></dxi-item>
+    <dxi-item formatName="strike"></dxi-item>
+    <dxi-item formatName="underline"></dxi-item>
+    <dxi-item formatName="separator"></dxi-item>
+    <dxi-item formatName="alignLeft"></dxi-item>
+    <dxi-item formatName="alignCenter"></dxi-item>
+    <dxi-item formatName="alignRight"></dxi-item>
+    <dxi-item formatName="alignJustify"></dxi-item>
+    <dxi-item formatName="separator"></dxi-item>
+    <dxi-item formatName="bulletList"></dxi-item>
+    <dxi-item formatName="separator"></dxi-item>
+    <dxi-item formatName="link"></dxi-item>
+  </dxo-toolbar>
+  <dxo-media-resizing [enabled]=true>
+  </dxo-media-resizing>
+ 
+</dx-html-editor>

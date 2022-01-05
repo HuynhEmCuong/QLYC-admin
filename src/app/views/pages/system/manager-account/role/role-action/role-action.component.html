@@ -1,0 +1,59 @@
+<div
+  bsModal
+  #childModal="bs-modal"
+  [config]="{ ignoreBackdropClick: true}"
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-child-name"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content animated fadeIn">
+      <form action="your-action" (submit)="fnSave()">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">
+            Thông tin vai trò
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+          <i class="dx-icon dx-icon-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <dx-form #targetForm id="form" [(formData)]="entity" labelLocation="left" >
+          <dxi-item itemType="group" [colCount]="2">
+            <dxi-item dataField="Name" [label]="{text: 'Tên vai trò'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Tên vai trò'}" >
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+              <dxi-validation-rule type="async"
+              message="Vai trò đã tồn tại- hoặc- Vai trò phải là chuỗi viết liền không dấu"
+              [validationCallback]="validateName">
+            </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="Description" [label]="{text: 'Mô tả'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Mô tả'}" >
+            </dxi-item>
+           </dxi-item>
+        </dx-form>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-right">
+              <div>
+                <button class="btn btn-secondary waves-effect waves-light mr-1" type="button"
+                  (click)="childModal.hide()"><span class="btn-label"><i
+                      class="fa fa-times"></i></span>Hủy</button>
+                <button [ladda]="isLoading"
+                  *rbacAllowArr="[{Action: 'UPDATE', Code:'ROLE', Operator:'OR'}, {Action: 'CREATE', Code:'ROLE', Operator:'OR'}]"
+                  class="btn btn-info waves-effect waves-light mr-1" type="button" (click)="fnSave()">
+                    <span class="btn-label"><i class="fa fa-check"></i></span>Lưu
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div
+  bsModal
+  #childModal="bs-modal"
+  [config]="{ ignoreBackdropClick: true}"
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-child-name"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content animated fadeIn">
+      <form action="your-action" (submit)="fnSave()">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">
+            Thông tin người dùng
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+          <i class="dx-icon dx-icon-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <dx-form #targetForm id="form" [(formData)]="entity" labelLocation="left">
+          <dxi-item itemType="group" [colCount]="2">
+            <dxi-item  dataField="Avatar" contentTemplate="itemTemplate">
+              <div *dxTemplate="let data of 'itemTemplate'">
+                <div>
+                  <upload-crop pathFolder="fileuploads/User/Avatar" [urlImage]="entity.Avatar"  (valueChange)="valueChangeImageCrop($event)"></upload-crop>
+                </div>
+              </div>
+            </dxi-item>
+            <dxi-item dataField="Roles" [label]="{text: 'Quyền hệ thống'}"   editorType="dxTagBox"  [editorOptions]="{displayExpr: 'Name' ,valueExpr:'Name',
+            dataSource:dataSourceRoles,value: '', tagTemplate: tagBoxTemplate,stylingMode :'outlined', placeholder: 'Quyền hệ thống',  showSelectionControls: true}">
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item dataField="UserName" [label]="{text: 'Tên đăng nhập'}"
+            [editorOptions]="{
+              readOnly:entity.Id>0?true:false,
+              stylingMode :'outlined',
+               placeholder: 'Tên đăng nhập'}" >
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+              <dxi-validation-rule type="pattern"  message="Tên đăng nhập không được chứa ký tự đặc biệt và có độ dài lớn hơn hoặc bằng 5 và nhỏ hơn 20 ký tự"  [pattern]="usernamePattern"></dxi-validation-rule>
+              <dxi-validation-rule type="async" message="Đã tồn tại" [validationCallback]="validation"></dxi-validation-rule >
+            </dxi-item>
+            <dxi-item dataField="Name" [label]="{text: 'Tên người dùng'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Tên người dùng'}" >
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="BirthDay" [label]="{text: 'Ngày sinh'}" editorType="dxDateBox"
+            [editorOptions]="{
+              openOnFieldClick: true,
+              displayFormat:'dd/MM/yyyy',
+              invalidDateMessage: 'Ngày tháng nhập không hợp lệ',
+              stylingMode :'outlined',
+               placeholder: 'Ngày sinh'}"></dxi-item>
+            <dxi-item dataField="Address" [label]="{text: 'Địa chỉ'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Địa chỉ'}"></dxi-item>
+            <dxi-item dataField="PhoneNumber" [label]="{text: 'Số điện thoại 1'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Số điện thoại 1'}">
+              <dxi-validation-rule type="pattern"  message="Số điện thoại không chứa ký tự"  [pattern]="phonePattern"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="PhoneNumber1" [label]="{text: 'Số điện thoại 2'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Số điện thoại 2'}">
+              <dxi-validation-rule type="pattern"  message="Số điện thoại không chứa ký tự"  [pattern]="phonePattern"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="Email" [label]="{text: 'Email'}"
+            [editorOptions]="{ stylingMode :'outlined', placeholder: 'Email'}">
+              <dxi-validation-rule type="pattern"  message="Email không đúng định dạng"  [pattern]="emailPattern"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="Status" [label]="{text: 'Trạng thái'}"  editorType="dxSelectBox"
+            [editorOptions]="{ displayExpr: 'Name_Vi' ,valueExpr:'Value' , searchExpr:'Value',
+            dataSource:dataSourceStatus, searchEnabled: true, stylingMode :'outlined', placeholder: 'Trạng thái'}">
+              <dxi-validation-rule type="required"   message="Bắt buộc nhập"></dxi-validation-rule>
+            </dxi-item>
+          </dxi-item>
+        </dx-form>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-right">
+              <div>
+                <button class="btn btn-secondary waves-effect waves-light mr-1" type="button"
+                  (click)="childModal.hide()"><span class="btn-label"><i
+                      class="fa fa-times"></i></span>Đóng</button>
+                <button [ladda]="isLoading"
+                  *rbacAllowArr="[{Action: 'UPDATE', Code:'USER', Operator:'OR'}, {Action: 'CREATE', Code:'USER', Operator:'OR'}]"
+                  class="btn btn-info waves-effect waves-light mr-1" type="button" (click)="fnSave()">
+                    <span class="btn-label"><i class="fa fa-check"></i></span>Lưu
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
