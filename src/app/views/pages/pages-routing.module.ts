@@ -20,6 +20,10 @@ const routes: Routes = [{
             loadChildren: () => import('./system/system.module')
             .then(m => m.SystemModule)
         },
+        {
+            path:'task-request',
+            loadChildren : () =>import('./task-request/task-request.module')
+        },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         { path: '**', redirectTo: 'dashboard' },
     ]

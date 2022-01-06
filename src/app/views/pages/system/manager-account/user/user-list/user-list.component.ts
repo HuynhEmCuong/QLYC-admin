@@ -26,6 +26,10 @@ export class UserListComponent implements OnInit {
     this.showModal = this.showModal.bind(this);
     this.resetPassword  =this.resetPassword.bind(this);
     this.fnDelete = this.fnDelete.bind(this);
+    this.dataSourceStatus = [
+      { id: 1, name: "Hoạt động" },
+      { id: 0, name: "Khoá" }
+    ];
    }
 
   ngOnInit() {

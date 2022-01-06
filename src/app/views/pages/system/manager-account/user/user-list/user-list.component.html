@@ -59,9 +59,9 @@
                 <dxi-column dataField="name" caption="Tên người dùng"></dxi-column>
                 <dxi-column dataField="phoneNumber" caption="Số điện thoại"></dxi-column>
                 <dxi-column dataField="email" caption="Email" dataType="date" format="dd/MM/yyyy"></dxi-column>
-                <!-- <dxi-column  dataField="Status" caption="Trạng thái" >
-                <dxo-lookup [dataSource]="dataSourceStatus" displayExpr="Name_Vi" valueExpr="Value"></dxo-lookup>
-              </dxi-column> -->
+                <dxi-column  dataField="status" caption="Trạng thái" >
+                <dxo-lookup [dataSource]="dataSourceStatus" displayExpr="name" valueExpr="id"></dxo-lookup>
+              </dxi-column>
                 <dxi-column dataField="createDate" caption="Ngày tạo" dataType="date" format="dd/MM/yyyy HH:mm">
                 </dxi-column>
 
