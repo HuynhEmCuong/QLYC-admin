@@ -16,8 +16,8 @@
       <div class="col-lg-4 col-xlg-3 col-md-5">
           <div class="card">
               <div class="card-body">
-                  <div class="m-t-30 text-center" > <img [src]="user.Avatar|image:true"  class="img-circle img-avatar" width="150" />
-                      <h4 class="card-title m-t-10">{{user.Name}}</h4>
+                  <div class="m-t-30 text-center" > <img [src]="user.avatar|image:true"  class="img-circle img-avatar" width="150" />
+                      <h4 class="card-title m-t-10">{{user.name}}</h4>
                       <h6 class="card-subtitle">Đang cảm thấy hào hứng :)</h6>
                       <div class="row text-center justify-content-md-center">
                          <button class="btn btn-info mr-1"  data-toggle="modal" data-target="#modal-change-password" data-whatever="@fat"><i class="fa fa-user-lock"></i> Đổi mật khẩu</button>
@@ -57,18 +57,18 @@
               <div class="card-body">
                     <small class="text-muted">Nhóm quyền </small>
                     <h6>
-                        <span class="label label-success mr-1" *ngFor="let item of user.Roles">
+                        <span class="label label-success mr-1" *ngFor="let item of user.roles">
                             {{item}}
                         </span>
                     </h6>
                   <small class="text-muted">Địa chỉ Email </small>
-                  <h6>{{user.Email}}</h6>
+                  <h6>{{user.email}}</h6>
                    <small class="text-muted pt-3 db">Số điện thoại 1</small>
-                  <h6>{{user.PhoneNumber}}</h6>
+                  <h6>{{user.phoneNumber}}</h6>
                   <small class="text-muted pt-3 db">Số điện thoại 2</small>
-                  <h6>{{user.PhoneNumber1}}</h6>
+                  <h6>{{user.phoneNumber1}}</h6>
                   <small class="text-muted pt-3 db">Địa chỉ</small>
-                  <h6>{{user.Address}}</h6>
+                  <h6>{{user.address}}</h6>
                   <br/>
               </div>
           </div>

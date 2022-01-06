@@ -12,19 +12,19 @@ constructor(private alertService:AlertifyService) { }
 
   async action(entity,apiService,callBack){
     let response:OperationResult;
-    if(entity.Id!=null && entity.Id > 0 ){
+    if(entity.id!=null && entity.id > 0 ){
        response = await apiService.update(entity).toPromise().then();
-      if(response.Success)
-        this.alertService.success(response.Message);
+      if(response.success)
+        this.alertService.success(response.message);
       else
-        this.alertService.error(response.Message);
+        this.alertService.error(response.message);
     }
     else{
        response = await apiService.add(entity).toPromise().then();
-      if(response.Success)
-        this.alertService.success(response.Message);
+      if(response.success)
+        this.alertService.success(response.message);
       else
-        this.alertService.error(response.Message);
+        this.alertService.error(response.message);
     }
     callBack(response);
   }
@@ -35,14 +35,14 @@ constructor(private alertService:AlertifyService) { }
     if(id>0){
       this.alertService.confirmDeleteRowGrid(async ()=>{
         response = await apiService.remove(id).toPromise().then();
-        if(response.Success)
+        if(response.success)
           this.alertService.success("Xóa thành công");
         else
         {
-          if(response.Message.includes("The DELETE statement conflicted with the REFERENCE"))
+          if(response.message.includes("The DELETE statement conflicted with the REFERENCE"))
             this.alertService.error("Không thể xóa ! Danh mục này đã phát sinh trong hệ thống, Vui lòng xóa các danh mục liên quan trước khi xóa danh mục này!");
           else{
-              this.alertService.error("Xóa thất bại !" +response.Message);
+              this.alertService.error("Xóa thất bại !" +response.message);
           }
         }
 

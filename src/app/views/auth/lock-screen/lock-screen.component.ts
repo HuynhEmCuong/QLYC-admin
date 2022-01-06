@@ -32,7 +32,7 @@ export class LockScreenComponent implements OnInit {
   login(){
     this.laddaSubmitLoading = true;
     this.authService.login(this.entity).subscribe((result:OperationResult)=>{
-      if(result.Success){
+      if(result.success){
         const returnUrl = this.routeActive.snapshot.queryParams.returnUrl;
         if (returnUrl !== "" && returnUrl != null) {
           this.router.navigate([returnUrl]);

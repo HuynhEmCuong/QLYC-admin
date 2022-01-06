@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
      }
 
    ngOnInit() {
-    let functions  = this.route.snapshot.data["funcions"] as Array<Function>;
-    this.navigations = unflattern(functions);
+    // let functions  = this.route.snapshot.data["funcions"] as Array<Function>;
+    // this.navigations = unflattern(functions);
   }
 }

@@ -16,7 +16,7 @@
         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true"
           aria-expanded="true">{{ user.name }}</a>
         <div class="dropdown-menu animated flipInY">
-          <a [routerLink]="['/pages/system/profile']" class="dropdown-item"><i class="fa fa-check"></i> Thông tin cá
+          <a [routerLink]="['/pages/manager/profile']" class="dropdown-item"><i class="fa fa-check"></i> Thông tin cá
             nhân</a>
           <div class="dropdown-divider"></div>
           <a href="javascript:void(0)" (click)="authService.logout()" class="dropdown-item"><i
@@ -30,34 +30,38 @@
     <!-- End Sidebar navigation -->
 
 
+  
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-        <ng-container *ngFor="let main of navigations ; last as isLast">
-          <ng-container>
-            <!-- {{main.children  | json}} -->
-            <li class="nav-small-cap">{{ main.Name_Vi | uppercase }}</li>
-            <li *ngFor="let item of main.children">
-              <ng-container>
+        <li>
+          <a> <i class="fa fa-users" [routerLink]="['/pages/student/']"  routerLinkActive="active"   aria-expanded="false"></i> Quản Lý Yêu Cầu
+          </a>
 
-                <a class="waves-effect waves-dark" [class.has-arrow]="item.children.length > 0" [routerLink]="item.Link"
-                  [routerLinkActive]="item.Link!=''?'active':''" aria-expanded="false">
-                  <i [class]="item.Icon"></i>
-                  <span class="hide-menu"> {{ item.Name_Vi }} </span>
-                </a>
-                <ul aria-expanded="false" class="collapse" *ngIf="item.children.length > 0">
-                  <li *ngFor="let child of item.children">
-                    <ng-container>
-                      <a [routerLink]="child.Link" [routerLinkActive]="child.Link!=''?'active':''">
-                        <i [class]="child.Icon"></i> {{ child.Name_Vi }}
-                      </a>
-                    </ng-container>
-                  </li>
-                </ul>
-              </ng-container>
+          <ul aria-expanded="true" class="collapse">
+            <li>
+              <a [routerLink]="['/pages/student/student-list']" routerLinkActive="active"> <i
+                class="fa fa-bars" aria-hidden="true"></i> Danh Sách Yêu Cầu</a>
             </li>
-            <li class="nav-devider" *ngIf="!isLast"></li>
-          </ng-container>
-        </ng-container>
+          </ul>
+        </li>
+        
+
+        <li *ngIf="user.unique_name==='admin'">
+          <a> <i class="fa fa-cog"   routerLinkActive="active"   aria-expanded="false"></i> QUẢN LÝ HỆ THỐNG
+          </a>
+
+          <ul aria-expanded="true" class="collapse">
+            <li>
+              <a [routerLink]="['/pages/manager/users']" routerLinkActive="active"> <i
+                class="fa fa-users" aria-hidden="true"></i> Danh sách user</a>
+            </li>
+            <!-- <li>
+              <a [routerLink]="['/pages/manager/role']" routerLinkActive="active"> <i
+                class="fa fa-bars" aria-hidden="true"></i> DS Quyền</a>
+            </li> -->
+          </ul>
+        </li>
+      
       </ul>
     </nav>
 

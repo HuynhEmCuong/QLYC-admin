@@ -27,10 +27,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+   
     this.laddaSubmitLoading = true;
+    debugger
     this.authService.login(this.entity).subscribe(
       (res: OperationResult) => {
-        if (res.Success) {
+        if (res.success) {
+         
           if (this.entity.rememberme) {
             localStorage.setItem("access_login", JSON.stringify(this.entity));
           }

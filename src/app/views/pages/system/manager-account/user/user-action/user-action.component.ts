@@ -39,10 +39,9 @@ export class UserActionComponent implements OnInit {
     }
 
   async ngOnInit() {
-    this.entity.Status =1;
+    this.entity.status =1;
     this.dataSourceRoles = this.roleService.loadDataSourceLookup();
-    this.dataSourceStatus = this.statusDefineService.loadDataSourceLookupFilter(["Code","=","USER"]);
-    await this.dataSourceStatus.load();
+    
   }
 
   fnSave() {
@@ -51,7 +50,7 @@ export class UserActionComponent implements OnInit {
       if(isValid) {
         this.isLoading = true;
         this.shareService.action(this.entity,this.userService,(response)=>{
-          if(response.Success){
+          if(response.success){
             this.childModal.hide();
             this.loadInit.emit();
           }
@@ -63,7 +62,7 @@ export class UserActionComponent implements OnInit {
 
   async showChildModal(item) {
     if(item!=null){
-      this.entity =await this.userService.findById(item.Id).toPromise().then();
+      this.entity =await this.userService.findById(item.id).toPromise().then();
 
     }
     else{
@@ -72,8 +71,8 @@ export class UserActionComponent implements OnInit {
       setTimeout(function(){
         self.targetForm.instance.resetValues();
         self.entity = new User();
-        self.entity.Status =1;
-        self.entity.Roles = ["Admin"];
+        self.entity.status =1;
+        self.entity.roles = ["Admin"];
       })
     }
     this.childModal.show();
@@ -81,20 +80,20 @@ export class UserActionComponent implements OnInit {
 
   validation(e){
     let model = new User();
-    model.Status = model.Status||1;
-    model.UserName =e.value;
-    model.Id = this.entity.Id;
+    model.status = model.status||1;
+    model.userName =e.value;
+    model.id = this.entity.id;
     return this.userService.validate(model).toPromise();
   }
 
   valueChangeImageCrop(urlImage){
     if(urlImage!=null)
-      this.entity.Avatar =urlImage;
+      this.entity.avatar =urlImage;
   }
 
   tagBoxTemplate(itemData: any) {
     return `<div class="dx-tag-content" style="padding-right: 10px">
-         <span>${itemData.Name}</span>
+         <span>${itemData.name}</span>
        </div>`;
 }
 }

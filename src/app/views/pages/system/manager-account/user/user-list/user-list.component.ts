@@ -19,7 +19,6 @@ export class UserListComponent implements OnInit {
   dataSourceStatus:any;
   constructor(
     private userService: UserService,
-    private statusDefineService: StatusDefineService,
     private alertService: AlertifyService,
     private authService: AuthService,
     private shareService:ShareService
@@ -31,7 +30,6 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource= this.userService.loadDataGrid();
-    this.dataSourceStatus = this.statusDefineService.loadStoreLookupFilter(["Code","=","USER"])
   }
 
   loadInit(){
@@ -39,25 +37,26 @@ export class UserListComponent implements OnInit {
   }
 
   showModal(e){
+    debugger
     this.modalChild.showChildModal(e.row.data);
   }
 
   resetPassword(e){
-    this.alertService.confirmWarning("Bạn có muốn đặt lại mật khẩu mặc định (chonhaviet@123)?",()=>{
-        this.authService.resetPassword(e.row.data.Id).subscribe(res=>{
+    this.alertService.confirmWarning("Bạn có muốn đặt lại mật khẩu mặc định (eiu@123)?",()=>{
+        this.authService.resetPassword(e.row.data.id).subscribe(res=>{
           let result = res as any;
-          if(result.Success){
+          if(result.success){
             this.alertService.success("Đặt lại mật khẩu thành công !");
           }
           else{
-            this.alertService.error(result.Message);
+            this.alertService.error(result.message);
           }
         });
     })
   }
 
   fnDelete(e){
-    let id = e.row.data.Id;
+    let id = e.row.data.id;
     this.shareService.deleteRowGrid(id,this.userService,()=>{
       this.dataSource.reload();
     })

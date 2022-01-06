@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
   async seenNotification(item:NotificationViewModel){
       if(item.IsSeen==this.seenStatus.NotSeen){
         var result:OperationResult=await this.notificationService.seenNotification(item.Id).toPromise().then();
-        if(result.Success){
+        if(result.success){
           this.notificationService.loadAllNotificationByUserLogin().subscribe(res=>{
             this.notifications = res.data;
             this.countNewNotification = res.countNew;

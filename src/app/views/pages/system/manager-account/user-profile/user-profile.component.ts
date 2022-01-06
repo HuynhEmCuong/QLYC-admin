@@ -72,13 +72,13 @@ export class UserProfileComponent implements OnInit {
       return;
     }
 
-    let result:any = await this.authService.changePassword(this.user.Id,this.modelPassword.newPassword).toPromise().then();
-    if(result.Success){
-      this.alertService.success(result.Message);
+    let result:any = await this.authService.changePassword(this.user.id,this.modelPassword.newPassword).toPromise().then();
+    if(result.success){
+      this.alertService.success(result.message);
       $("#modal-change-password").modal('hide');
 
     }else{
-      this.alertService.error(result.Message);
+      this.alertService.error(result.message);
     }
   }
 

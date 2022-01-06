@@ -1,7 +1,7 @@
 
 export class OperationResult{
-    Caption:string
-    Message:string
-    Success: Boolean
-    Data :any
+    caption:string
+    message:string
+    success: Boolean
+    data :any
 }

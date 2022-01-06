@@ -28,7 +28,9 @@ export class AuthService {
   login(model: any) {
     return this.http.post(`${API_URL}/Authen/Login`, model).pipe(
       map((response: OperationResult) => {
-        if (response.Success) {
+        debugger
+        if (response.success) {
+          debugger
           this.setCurrentUser(this.setUserToken(response));
         }
         return response;
@@ -49,18 +51,19 @@ export class AuthService {
   }
 
   setUserToken(response:OperationResult):UserToken{
-    let userDecode = this.jwtHelper.decodeToken(response.Data.Token);
+ 
+    let userDecode = this.jwtHelper.decodeToken(response.data.token);
     let user = new UserToken();
     user.avatar=userDecode.avatar;
     user.email= userDecode.email;
     user.id= userDecode.id;
     user.name= userDecode.name;
-    user.permissions=response.Data.Permission;
+    user.permissions=response.data.Permission;
     user.phonenumber= userDecode.phonenumber;
     user.roles= JSON.parse(userDecode.roles);
     user.unique_name= userDecode.unique_name;
-    user.token=response.Data.Token;
-    user.refresh_token=response.Data.RefreshToken;
+    user.token=response.data.token;
+    user.refresh_token=response.data.RefreshToken;
     return user;
   }
 
@@ -81,7 +84,7 @@ export class AuthService {
     };
     return  this.http.post<OperationResult>(`${API_URL}/Authen/RefreshToken`, model).pipe(
         map((response:OperationResult)=>{
-          if(response.Success){
+          if(response.success){
             this.setCurrentUser(this.setUserToken(response));
           }
           return response;

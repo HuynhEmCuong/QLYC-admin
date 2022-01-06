@@ -9,7 +9,7 @@ const routes: Routes = [{
     path: '',
     component: PagesComponent,
     runGuardsAndResolvers:'always',
-    canActivate: [AuthGuard,AuthorizationGuard],
+    canActivate: [AuthGuard],
     children: [
         {
             path: 'dashboard',

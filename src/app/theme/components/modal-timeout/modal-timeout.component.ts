@@ -26,7 +26,7 @@ export class ModalTimeoutComponent implements OnInit {
      let self = this;
      clearInterval(this.secondInterval);
      this.authService.refreshToken().subscribe((response:OperationResult)=>{
-       if(response.Success){
+       if(response.success){
         $("#idle-timeout-dialog").modal('hide');
         self.checkExpiryToken();
        }
