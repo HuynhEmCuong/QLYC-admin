@@ -55,7 +55,7 @@ export class BaseService<T> implements IBaseService<T> {
       let self = this;
       return new DataSource({
         store: createStore({
-          key: `Id`,
+          key: `id`,
           loadUrl: `${API_URL}/${this.entity}/LoadDxoLookup`,
           onBeforeSend: function (method, ajaxOptions) {
             ajaxOptions.headers = {
@@ -72,7 +72,7 @@ export class BaseService<T> implements IBaseService<T> {
       let self = this;
       return new DataSource({
         store: createStore({
-          key: `Id`,
+          key: `id`,
           loadUrl: `${API_URL}/${this.entity}/LoadDxoLookup`,
           onBeforeSend: function (method, ajaxOptions) {
             ajaxOptions.headers = {
@@ -90,7 +90,7 @@ export class BaseService<T> implements IBaseService<T> {
     let self = this;
     return new DataSource({
       store: createStore({
-        key: `Id`,
+        key: `id`,
         loadUrl: `${API_URL}/${this.entity}/LoadDxoLookup`,
         onBeforeSend: function (method, ajaxOptions) {
           ajaxOptions.headers = {
@@ -109,7 +109,7 @@ export class BaseService<T> implements IBaseService<T> {
     let self = this;
     return {
       store: createStore({
-        key: "Id",
+        key: "id",
         loadUrl: `${API_URL}/${this.entity}/LoadDxoLookup`,
         onBeforeSend: function (method, ajaxOptions) {
           ajaxOptions.headers = {
@@ -127,7 +127,7 @@ export class BaseService<T> implements IBaseService<T> {
     let self = this;
     return {
       store: createStore({
-        key: "Id",
+        key: "id",
         loadUrl: `${API_URL}/${this.entity}/LoadDxoLookup`,
         onBeforeSend: function (method, ajaxOptions) {
           ajaxOptions.headers = {
@@ -147,7 +147,7 @@ export class BaseService<T> implements IBaseService<T> {
     let entity = this.entity;
     return new DataSource({
       store: createStore({
-        key: `Id`,
+        key: `id`,
         loadUrl: `${API_URL}/${this.entity}/LoadDxoGrid`,
         deleteUrl: `${API_URL}/${this.entity}/Delete${this.entity}`,
         updateUrl: `${API_URL}/${this.entity}/Update${this.entity}`,
@@ -172,7 +172,7 @@ export class BaseService<T> implements IBaseService<T> {
     let entity = this.entity;
     return new DataSource({
       store: createStore({
-        key: `Id`,
+        key: `id`,
         loadUrl: `${API_URL}/${this.entity}/LoadDxoGrid`,
         deleteUrl: `${API_URL}/${this.entity}/Delete${this.entity}`,
         updateUrl: `${API_URL}/${this.entity}/Update${this.entity}`,
@@ -198,7 +198,7 @@ export class BaseService<T> implements IBaseService<T> {
     let entity = this.entity;
     return new DataSource({
       store: createStore({
-        key: `Id`,
+        key: `id`,
         loadUrl: `${API_URL}/${this.entity}/${actionLoad}`,
         deleteUrl: `${API_URL}/${this.entity}/${actionDelete}`,
         updateUrl: `${API_URL}/${this.entity}/${actionUpdate}`,
@@ -223,7 +223,7 @@ export class BaseService<T> implements IBaseService<T> {
     let entity = this.entity;
     return new DataSource({
       store: createStore({
-        key: `Id`,
+        key: `id`,
         loadUrl: `${API_URL}/${this.entity}/${actionLoad}`,
         deleteUrl: `${API_URL}/${this.entity}/${actionDelete}`,
         updateUrl: `${API_URL}/${this.entity}/${actionUpdate}`,
