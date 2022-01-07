@@ -50,22 +50,18 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <div class="bs-stepper-content">
-                <div id="test-l-1" class="content">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
-                  </div>
-                  <button (click)="next()" class="btn btn-primary">Next</button>
+              <div class="bs-stepper-content ">
+                <div id="test-l-1" class="content fade">
+                  <app-task-receive [taskRequest]="taskRequest"></app-task-receive>
                 </div>
-                <div id="test-l-2" class="content">
+                <div id="test-l-2" class="content fade">
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
                   </div>
                   <button (click)="next()" class="btn btn-primary">Next</button>
                 </div>
-                <div id="test-l-3" class="content text-center" (click)="pre()">
+                <div id="test-l-3" class="content  fade" (click)="pre()">
                   <button type="submit" class="btn btn-primary mt-5">Submit</button>
                 </div>
               </div>

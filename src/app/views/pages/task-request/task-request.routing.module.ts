@@ -3,20 +3,24 @@ import { TaskListComponent } from "./task-list/task-list.component";
 import { TaskRequestComponent } from "./task-request.component";
 import { NgModule } from '@angular/core';
 import { TaskDetailComponent } from "./task-detail/task-detail.component";
+import { StudentTaskResolver } from "src/app/core/resolvers/request.resolver";
 
 
 
-const routes :Routes =[{
-    path :'',
-    component : TaskRequestComponent,
+const routes: Routes = [{
+    path: '',
+    component: TaskRequestComponent,
     children: [
         {
-            path:'list',
-            component:TaskListComponent
+            path: 'list',
+            component: TaskListComponent
         },
         {
-            path:'detail',
-            component:TaskDetailComponent
+            path: 'detail/:id',
+            component: TaskDetailComponent,
+            resolve: {
+                task: StudentTaskResolver,       // <== key: value (service or Dependency injection token)
+            }
         }
     ]
 }];
@@ -25,4 +29,4 @@ const routes :Routes =[{
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class TaskRequestRoutingModule{}
+export class TaskRequestRoutingModule { }

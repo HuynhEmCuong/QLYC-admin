@@ -7,6 +7,7 @@ import { TaskListComponent } from "./task-list/task-list.component";
 import { TaskRequestComponent } from "./task-request.component";
 import { TaskRequestRoutingModule } from "./task-request.routing.module";
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TaskReceiveComponent } from "./task-detail/task-receive/task-receive.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -18,7 +19,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     declarations: [
         TaskListComponent,
         TaskRequestComponent,
-        TaskDetailComponent
+        TaskDetailComponent,
+        TaskReceiveComponent
+        
     ]
 })
 export class TaskRequestModule { }
