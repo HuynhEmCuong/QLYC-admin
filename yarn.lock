@@ -2687,6 +2687,11 @@ browserstack@^1.5.1:
   dependencies:
     https-proxy-agent "^2.2.1"
 
+bs-stepper@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/bs-stepper/-/bs-stepper-1.7.0.tgz#bfa4cc51c4e67957caae57f5bdcba1977186bac1"
+  integrity sha512-+DX7UKKgw2GI6ucsSCRd19VHYrxf/8znRCLs1lQVVLxz+h7EqgIOxoHcJ0/QTaaNoR9Cwg78ydo6hXIasyd3LA==
+
 buffer-equal-constant-time@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"

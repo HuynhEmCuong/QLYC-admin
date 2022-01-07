@@ -1,3 +1,4 @@
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
 .name-user {
   font-weight: 500;
   text-transform: uppercase;

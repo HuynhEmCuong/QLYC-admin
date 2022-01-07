@@ -29,6 +29,7 @@
     "angular-notification-icons": "^1.0.0",
     "angular2-ladda": "^3.1.0",
     "angular7-ladda": "^2.0.1",
+    "bs-stepper": "^1.7.0",
     "devextreme": "20.1",
     "devextreme-angular": "20.1",
     "devextreme-aspnet-data-nojquery": "^2.7.1",

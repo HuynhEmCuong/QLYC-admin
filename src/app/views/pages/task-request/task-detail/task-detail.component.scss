@@ -1,0 +1,21 @@
+.bs-stepper-header {
+    .line {
+        background-color: #144069;
+    }
+
+    .step {
+        border-radius: 10px;
+        background-color: #eae2d6;
+    }
+    .step.active {
+        border: 1px solid #144069;
+
+        button.step-trigger {
+            color: #144069;
+
+            .bs-stepper-circle {
+                background-color: #00315f;
+            }
+        }
+    }
+}

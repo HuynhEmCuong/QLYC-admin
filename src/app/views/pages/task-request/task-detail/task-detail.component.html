@@ -1,3 +1,78 @@
-<p>
-  task-detail works!
-</p>
+<div class="row page-titles">
+  <div class="col-md-5 col-8 align-self-center">
+    <h3 class="text-themecolor">Quản lý yêu cầu</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/pages/dashboard']">
+          Trang chủ</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a [routerLink]="['/pages/task-request/list']">
+          Danh sách yêu cầu
+        </a>
+      </li>
+      <li class="breadcrumb-item active">
+        Chi tiết yêu cầu</li>
+    </ol>
+  </div>
+  <div class="col-md-7">
+
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-12">
+    <div id="stepper1" class="bs-stepper">
+      <div class="bs-stepper-header">
+        <div class="step" data-target="#test-l-1">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">1</span>
+            <span class="bs-stepper-label">Nhận Việc</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-2">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">2</span>
+            <span class="bs-stepper-label">Xử Lý</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-3">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">3</span>
+            <span class="bs-stepper-label">Hoàn Thành</span>
+          </button>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="bs-stepper-content">
+                <div id="test-l-1" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                  </div>
+                  <button (click)="next()" class="btn btn-primary">Next</button>
+                </div>
+                <div id="test-l-2" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                  </div>
+                  <button (click)="next()" class="btn btn-primary">Next</button>
+                </div>
+                <div id="test-l-3" class="content text-center" (click)="pre()">
+                  <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

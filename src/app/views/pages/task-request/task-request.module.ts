@@ -6,14 +6,14 @@ import { TaskDetailComponent } from "./task-detail/task-detail.component";
 import { TaskListComponent } from "./task-list/task-list.component";
 import { TaskRequestComponent } from "./task-request.component";
 import { TaskRequestRoutingModule } from "./task-request.routing.module";
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
     imports: [
         CommonModule,
         TaskRequestRoutingModule,
         HttpClientModule,
         SharedModule,
-        
+        TabsModule.forRoot()
     ],
     declarations: [
         TaskListComponent,

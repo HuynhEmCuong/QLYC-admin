@@ -26,8 +26,9 @@
         <div class="table-responsive">
           <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnAutoWidth]="true"
             [remoteOperations]="true" [showRowLines]="true" [showColumnLines]="true" class="m-grid-5"
-            [allowColumnResizing]="true" noDataText="Không có dữ liệu !" [focusedRowEnabled]="true"
-            [columnHidingEnabled]="true" columnResizingMode="widget">
+            [allowColumnResizing]="true" noDaText="Không có dữ liệu !" [focusedRowEnabled]="true"
+            [columnHidingEnabled]="true" columnResizingMode="widget"
+            (onCellPrepared)="onCellPrepared($event)">
 
             <!-- Option grid -->
             <dxo-sorting mode="single">
@@ -53,11 +54,11 @@
             <dxi-column [width]=150 dataField="appUser.name" caption="Người thực hiện">
             </dxi-column>
 
-            <dxi-column [width]=100 dataField="Status" caption="Trạng thái">
-              <!-- <dxo-lookup [dataSource]="dataSourceStatus" displayExpr="name" valueExpr="id" allowClearing="true">
-              </dxo-lookup> -->
+            <dxi-column [width]=100 dataField="status" caption="Trạng thái">
+              <dxo-lookup [dataSource]="dataStatusRequest" displayExpr="name" valueExpr="id" allowClearing="true">
+              </dxo-lookup>
             </dxi-column>
-            <dxi-column dataField="createDate" dataType="date" sortOrder="desc"  format="dd/MM/yyyy" caption="Ngày nộp"></dxi-column>
+            <dxi-column dataField="createDate" dataType="date" sortOrder="desc"  format="dd/MM/yyyy " caption="Ngày nộp"></dxi-column>
             <dxi-column dataField="assignDate" dataType="date" format="dd/MM/yyyy" caption="Ngày giao việc">
             </dxi-column>
             <dxi-column dataField="finishDate" dataType="date" format="dd/MM/yyyy" caption="Ngày hoàn thành">
