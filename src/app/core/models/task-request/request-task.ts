@@ -15,6 +15,7 @@ export interface StudentTask {
     status: RequestStatus;
     createDate: string | null;
     modifyDate: string | null;
+    
     requestType: RequestType;
     student: Student;
     appUser: User;

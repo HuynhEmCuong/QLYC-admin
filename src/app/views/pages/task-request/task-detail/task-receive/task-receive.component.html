@@ -3,54 +3,69 @@
   <div class="row form-group">
     <div class="col-md-3">
       <label class="badge badge-dark">Họ và tên</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ"
-        [value]="taskRequest.student.fullName" readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.fullName"
+        readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Email</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ"
-        [value]="taskRequest.student.email" readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.email"
+        readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Số điện thoại</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ"
-        [value]="taskRequest.student.mobi" readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.mobi"
+        readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Mã số sinh viên</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ"
-        [value]="taskRequest.student.studentId" readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.studentId"
+        readOnly />
     </div>
 
-    <div class="task col-12 mt-3">
-      <h3> Thông tin yêu cầu</h3>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Loại yêu cầu</th>
-            <th>Số lượng</th>
-            <th>Ghi chú</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>{{taskRequest.requestType.name}}</td>
-            <td>{{taskRequest.quantity}}</td>
-            <td>{{taskRequest.note}}</td>
-            <td>
-              <button class="btn btn-success" (click)="next()">
-                Nhận việc
-              </button>
-              <button class="btn btn-dark ml-3" (click)="next()">
-                Giao việc
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+  </div>
+  <div class="row form-group">
+    <div class="col-4">
+    
     </div>
+    <div class="col-4">
+     
+    </div>
+    <div class="col-4">
+      <label class="badge badge-dark">Giao việc cho</label>
+      <select class="form-control" id="User-task" name="User-task" [(ngModel)]="userId">
+        <option *ngFor="let item of users" [value]="item.id">{{item.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="task  mt-3">
+    <h3> Thông tin yêu cầu</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Loại yêu cầu</th>
+          <th>Số lượng</th>
+          <th>Ghi chú</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>{{taskRequest.requestType.name}}</td>
+          <td>{{taskRequest.quantity}}</td>
+          <td>{{taskRequest.note}}</td>
+          <td>
+            <button class="btn btn-success" (click)="receiveTask()">
+              Nhận việc
+            </button>
+            <!-- <button class="btn btn-dark ml-3" (click)="next()">
+              Giao việc
+            </button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

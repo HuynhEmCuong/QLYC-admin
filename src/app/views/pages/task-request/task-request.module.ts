@@ -8,11 +8,13 @@ import { TaskRequestComponent } from "./task-request.component";
 import { TaskRequestRoutingModule } from "./task-request.routing.module";
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TaskReceiveComponent } from "./task-detail/task-receive/task-receive.component";
+import { FormsModule } from "@angular/forms";
 @NgModule({
     imports: [
         CommonModule,
         TaskRequestRoutingModule,
         HttpClientModule,
+        FormsModule,    
         SharedModule,
         TabsModule.forRoot()
     ],
@@ -21,7 +23,6 @@ import { TaskReceiveComponent } from "./task-detail/task-receive/task-receive.co
         TaskRequestComponent,
         TaskDetailComponent,
         TaskReceiveComponent
-        
     ]
 })
 export class TaskRequestModule { }

@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   login() {
    
     this.laddaSubmitLoading = true;
-    debugger
     this.authService.login(this.entity).subscribe(
       (res: OperationResult) => {
         if (res.success) {

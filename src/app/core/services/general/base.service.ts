@@ -35,6 +35,7 @@ export class BaseService<T> implements IBaseService<T> {
     return this.http.post<OperationResult>(`${API_URL}/${this.entity}/Add`, entity);
   }
   update(entity):Observable<OperationResult>{
+    console.log(entity)
     return this.http.put<OperationResult>(`${API_URL}/${this.entity}/Update`, entity)
   }
   remove(id: any):Observable<OperationResult> {

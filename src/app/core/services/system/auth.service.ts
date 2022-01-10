@@ -28,9 +28,7 @@ export class AuthService {
   login(model: any) {
     return this.http.post(`${API_URL}/Authen/Login`, model).pipe(
       map((response: OperationResult) => {
-        debugger
         if (response.success) {
-          debugger
           this.setCurrentUser(this.setUserToken(response));
         }
         return response;
