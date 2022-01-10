@@ -15,7 +15,7 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
 })
 export class TaskReceiveComponent implements OnInit {
   userId: string;
-  users :User[];
+  users: User[];
   @Input() taskRequest: StudentTask
   @Output() data = new EventEmitter<StudentTask>()
 
@@ -23,8 +23,8 @@ export class TaskReceiveComponent implements OnInit {
     private _taskRequest: TaskRequestService,
     private _alert: AlertifyService,
     private _auth: AuthService,
-    private _user:UserService
-  ) { 
+    private _user: UserService
+  ) {
     this._auth.currentUser$.subscribe(res => this.userId = res.id);
   }
 
@@ -32,8 +32,8 @@ export class TaskReceiveComponent implements OnInit {
     this.getAllUser();
   }
 
-  getAllUser(){
-    this._user.getAll().subscribe(res =>{
+  getAllUser() {
+    this._user.getAll().subscribe(res => {
       this.users = res;
     })
   }

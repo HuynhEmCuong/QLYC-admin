@@ -52,16 +52,13 @@
             <div class="col-12">
               <div class="bs-stepper-content ">
                 <div id="test-l-1" class="content fade">
-                  <app-task-receive (data)="updateData($event)"  [taskRequest]="taskRequest"></app-task-receive>
+                  <app-task-receive (data)="updateData($event)" [taskRequest]="taskRequest"></app-task-receive>
                 </div>
                 <div id="test-l-2" class="content fade">
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                  </div>
+                  <app-task-handing [taskRequest]="taskRequest"> </app-task-handing>
                   <!-- <button  class="btn btn-primary">Next</button> -->
                 </div>
-                <div id="test-l-3" class="content  fade" >
+                <div id="test-l-3" class="content  fade">
                   <!-- <button type="submit" class="btn btn-primary mt-5">Submit</button> -->
                 </div>
               </div>

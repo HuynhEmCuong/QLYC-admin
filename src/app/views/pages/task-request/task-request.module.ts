@@ -9,6 +9,7 @@ import { TaskRequestRoutingModule } from "./task-request.routing.module";
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TaskReceiveComponent } from "./task-detail/task-receive/task-receive.component";
 import { FormsModule } from "@angular/forms";
+import { TaskHandingComponent } from "./task-detail/task-handing/task-handing.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -22,7 +23,8 @@ import { FormsModule } from "@angular/forms";
         TaskListComponent,
         TaskRequestComponent,
         TaskDetailComponent,
-        TaskReceiveComponent
+        TaskReceiveComponent,
+        TaskHandingComponent
     ]
 })
 export class TaskRequestModule { }

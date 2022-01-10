@@ -1,0 +1,60 @@
+<div class="receive-job">
+  <h3>Thông tin người xử lý </h3>
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label class="badge badge-dark">Họ và tên</label>
+      <input type="text" name="updateBy" class="form-control" placeholder="Tên" [value]="taskRequest.appUser.name"
+        readOnly />
+    </div>
+    <div class="col-md-4">
+      <label class="badge badge-dark">Email</label>
+      <input type="text" name="updateBy" class="form-control" placeholder="Email" [value]="taskRequest.appUser.email"
+        readOnly />
+    </div>
+    <div class="col-md-4">
+      <label class="badge badge-dark">Số điện thoại</label>
+      <input type="text" name="updateBy" class="form-control" placeholder="Số điện thoại" [value]="taskRequest.appUser.phoneNumber"
+        readOnly />
+    </div>
+  </div>
+
+  <div class="task  mt-3">
+    <h3> Thông tin yêu cầu</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Loại yêu cầu</th>
+          <th>Miêu tả</th>
+          <th>Số lượng</th>
+          <th>Trạng thái</th>
+          <th>Ghi chú</th>
+          <th>File Scan</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{taskRequest.requestType.name}}</td>
+          <td>{{taskRequest.requestType.description}}</td>
+          <td>{{taskRequest.quantity}}</td>
+          <td>{{taskRequest.status | taskstatus}}</td>
+          <td>{{taskRequest.note}}</td>
+          <td>
+            <div class="form-group">
+              <input type="file"
+                     id="file"
+                     (change)="handleFileInput($event.target.files)">
+          </div>
+          </td>
+          <td>
+            <button class="btn btn-success" >
+              Hoàn thành
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+</div>

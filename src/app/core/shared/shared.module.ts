@@ -18,6 +18,7 @@ import { SafeHtmlPipe } from '../pipes/safeHTML.pipe';
 import { RbacAllowArrDirective } from '../directives/rbac-allowArr.directive';
 import { interval, Observable } from 'rxjs';
 import { ContentLoaderModule } from '@ngneat/content-loader';
+import { TaskStatusPipe } from '../pipes/task-status.pipe';
 export class MyClock extends TimeagoClock {
   tick(then: number): Observable<number> {
     return interval(2000);
@@ -32,7 +33,8 @@ export class MyClock extends TimeagoClock {
     RbacAllowArrDirective,
     UploadMultipleComponent,
     EditorFullComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    TaskStatusPipe
   ],
   imports: [
     CommonModule,
@@ -83,7 +85,8 @@ export class MyClock extends TimeagoClock {
     DxScrollViewModule,
     DxSortableModule,
     ContentLoaderModule,
-    DxValidationSummaryModule
+    DxValidationSummaryModule,
+    TaskStatusPipe
   ],
   providers: [TimeagoIntl
   ]

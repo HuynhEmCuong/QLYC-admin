@@ -1016,8 +1016,8 @@ Buttons
 
 .btn-success,
 .btn-success.disabled {
-  background: #d60000;
-  border: 1px solid #d60000;
+  background: #2bd600;
+  border: 1px solid #2bd600;
   -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   -webkit-transition: 0.2s ease-in;
@@ -1025,10 +1025,10 @@ Buttons
   transition: 0.2s ease-in; }
   .btn-success:hover,
   .btn-success.disabled:hover {
-    background: #d60000;
+    background: #2bd600;
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
-    border: 1px solid #d60000; }
+    border: 1px solid #2bd600; }
   .btn-success.active, .btn-success:focus,
   .btn-success.disabled.active,
   .btn-success.disabled:focus {
