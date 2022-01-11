@@ -39,7 +39,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onReditDetail(e) {
-    debugger
     let data = e.row.data;
     this.route.navigateByUrl(`/pages/task-request/detail/${data.id}`)
   }

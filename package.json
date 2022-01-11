@@ -42,6 +42,7 @@
     "ngx-bootstrap": "^6.2.0",
     "ngx-cookie-service": "^10.1.1",
     "ngx-dropzone": "^2.2.2",
+    "ngx-spinner": "9.0.1",
     "ngx-timeago": "1.0.4",
     "rxjs": "~6.5.4",
     "signalr": "^2.4.1",

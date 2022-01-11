@@ -19,6 +19,7 @@ import { RbacAllowArrDirective } from '../directives/rbac-allowArr.directive';
 import { interval, Observable } from 'rxjs';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { TaskStatusPipe } from '../pipes/task-status.pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
 export class MyClock extends TimeagoClock {
   tick(then: number): Observable<number> {
     return interval(2000);
@@ -49,6 +50,7 @@ export class MyClock extends TimeagoClock {
     NgxDropzoneModule,
     DxHtmlEditorModule,
     DxValidationSummaryModule,
+    NgxSpinnerModule,
     //TimeagoModule.forRoot()
     TimeagoModule.forRoot({
       formatter: { provide: TimeagoFormatter, useClass: TimeagoCustomFormatter },
@@ -86,7 +88,8 @@ export class MyClock extends TimeagoClock {
     DxSortableModule,
     ContentLoaderModule,
     DxValidationSummaryModule,
-    TaskStatusPipe
+    TaskStatusPipe,
+    NgxSpinnerModule
   ],
   providers: [TimeagoIntl
   ]

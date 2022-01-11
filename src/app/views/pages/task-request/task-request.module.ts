@@ -10,6 +10,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TaskReceiveComponent } from "./task-detail/task-receive/task-receive.component";
 import { FormsModule } from "@angular/forms";
 import { TaskHandingComponent } from "./task-detail/task-handing/task-handing.component";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserModule } from "@angular/platform-browser";
 @NgModule({
     imports: [
         CommonModule,
@@ -17,7 +20,9 @@ import { TaskHandingComponent } from "./task-detail/task-handing/task-handing.co
         HttpClientModule,
         FormsModule,    
         SharedModule,
-        TabsModule.forRoot()
+        TabsModule.forRoot(),
+        NgxSpinnerModule
+
     ],
     declarations: [
         TaskListComponent,

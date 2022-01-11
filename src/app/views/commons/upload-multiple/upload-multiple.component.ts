@@ -100,22 +100,22 @@ export class UploadMultipleComponent implements OnInit {
 
   mapFiles(response:OperationFileResult){
     let listCustomerFile = new Array<any>();
-    if(response.FileResponses.length>0){
-      response.FileResponses.forEach(fileResponse => {
+    if(response.fileResponses.length>0){
+      response.fileResponses.forEach(fileResponse => {
         let customFile:any= {};
         customFile["Id"]=0;
         customFile["FileId"]=0;
         customFile[this.options.nameEntityId]=0;
 
         let file = new FileViewModel();
-        file.FileFullPath = fileResponse.FileFullPath;
-        file.FileLocalName = fileResponse.FileLocalName;
-        file.FileOriginalName = fileResponse.FileOriginalName;
-        file.FileExtension = fileResponse.FileExtension;
-        file.FileType = fileResponse.FileType;
-        file.IsImage = fileResponse.IsImage;
-        file.Path = fileResponse.Path;
-        file.Position = fileResponse.Position;
+        file.FileFullPath = fileResponse.fileFullPath;
+        file.FileLocalName = fileResponse.fileLocalName;
+        file.FileOriginalName = fileResponse.fileOriginalName;
+        file.FileExtension = fileResponse.fileExtension;
+        file.FileType = fileResponse.fileType;
+        file.IsImage = fileResponse.isImage;
+        file.Path = fileResponse.path;
+        file.Position = fileResponse.position;
 
         customFile["File"] = file;
         listCustomerFile.push(customFile);

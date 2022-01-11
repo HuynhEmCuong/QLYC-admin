@@ -4,17 +4,20 @@
     }
 
     .step {
+        font-size: 16px;
         border-radius:20px;
         background-color: #eae2d6;
     }
     .step.active {
-        border: 1px solid #144069;
+        border: 1px solid #eae2d6;
 
         button.step-trigger {
-            color: #144069;
+            color: #eae2d6;
+            background-color: #144069;
 
             .bs-stepper-circle {
-                background-color: #00315f;
+                color:#144069 ;
+                background-color: #eae2d6;
             }
         }
     }

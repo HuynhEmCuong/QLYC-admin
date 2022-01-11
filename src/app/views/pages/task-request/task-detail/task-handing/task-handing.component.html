@@ -3,18 +3,18 @@
   <div class="row form-group">
     <div class="col-md-4">
       <label class="badge badge-dark">Họ và tên</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Tên" [value]="taskRequest.appUser.name"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Tên"
+        [value]="taskRequest.appUser==null? '':taskRequest.appUser.name" readOnly />
     </div>
     <div class="col-md-4">
       <label class="badge badge-dark">Email</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Email" [value]="taskRequest.appUser.email"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Email"
+        [value]="taskRequest.appUser!=null?taskRequest.appUser.email : ''" readOnly />
     </div>
     <div class="col-md-4">
       <label class="badge badge-dark">Số điện thoại</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Số điện thoại" [value]="taskRequest.appUser.phoneNumber"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" placeholder="Số điện thoại"
+        [value]="taskRequest.appUser!=null?taskRequest.appUser.phoneNumber : ''" readOnly />
     </div>
   </div>
 
@@ -28,7 +28,8 @@
           <th>Số lượng</th>
           <th>Trạng thái</th>
           <th>Ghi chú</th>
-          <th>File Scan</th>
+          <th>File</th>
+          <th *ngIf="checkSave==false"></th>
           <th></th>
         </tr>
       </thead>
@@ -39,15 +40,13 @@
           <td>{{taskRequest.quantity}}</td>
           <td>{{taskRequest.status | taskstatus}}</td>
           <td>{{taskRequest.note}}</td>
-          <td>
-            <div class="form-group">
-              <input type="file"
-                     id="file"
-                     (change)="handleFileInput($event.target.files)">
-          </div>
+          <td *ngIf="checkSave  ; else infoFile">
+            <label class="btn btn-upload"><i class="fa fa-upload"></i> Tải lên
+              <input type="file" accept=".pdf" style="display: none" (change)="onSelectFile($event)" />
+            </label>
           </td>
           <td>
-            <button class="btn btn-success" >
+            <button class="btn btn-success" (click)="updateFinish()">
               Hoàn thành
             </button>
           </td>
@@ -55,6 +54,16 @@
       </tbody>
     </table>
   </div>
-  
-
 </div>
+
+<ng-template #infoFile>
+  <td>
+    {{formatNameFile(fileNameOrgin) ||formatNameFile(taskRequest.fileName) || "" }}
+  </td>
+  <td>
+    <button class="btn btn-danger" (click)="removeFile()">
+      <i class="fa fa-trash"></i> Xóa
+    </button>
+  </td>
+
+</ng-template>

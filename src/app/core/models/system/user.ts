@@ -2,13 +2,13 @@ import { Role } from './role';
 
 export class User {
     id:number;
-    email: string;
-    userName: string;
+    email: string ="";
+    userName: string ;
     phoneNumber: string;
     avatar: string;
     uRLGg: string;
     uRLFb: string;
-    name: string;
+    name: string ="";
     birthDay: string | null;
     phoneNumber1: string;
     address: string;

@@ -10,18 +10,13 @@ import { AuthService } from 'src/app/core/services/system/auth.service';
   styleUrls: ['./task-detail.component.scss']
 })
 export class TaskDetailComponent implements OnInit {
-  taskRequest: StudentTask;
+  taskRequest: StudentTask ;
   private stepper: Stepper;
   constructor(private _routeActive: ActivatedRoute,
     ) {
     this._routeActive.data.subscribe((res) => {
       this.taskRequest = res.task;
     });
-
-
-
-
-
   }
 
   ngOnInit() {
@@ -34,6 +29,7 @@ export class TaskDetailComponent implements OnInit {
   }
 
   updateData($event) {
+    debugger
     this.taskRequest = $event;
     this.steperTo(this.taskRequest.status)
   }

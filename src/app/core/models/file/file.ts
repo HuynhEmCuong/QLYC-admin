@@ -1,4 +1,3 @@
-import { FileResponse } from '../system/opration-file-result';
 
 export class FileViewModel{
   Id: number;

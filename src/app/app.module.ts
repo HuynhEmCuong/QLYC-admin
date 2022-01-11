@@ -73,7 +73,7 @@ const SERVICE = [
     AppRoutingModule,
     SharedModule,
     PagesModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

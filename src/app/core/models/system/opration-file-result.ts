@@ -1,20 +1,20 @@
-export class FileResponse {
-  FileOriginalName: string;
-  FileFullPath:string;
-  FileLocalName:string;
-  FileType:string;
-  IsImage:boolean;
-  FileName: string;
-  FileExtension: string;
-  Path: string;
-  Position:number;
+export class fileResponse {
+  fileOriginalName: string;
+  fileFullPath:string;
+  fileLocalName:string;
+  fileType:string;
+  isImage:boolean;
+  fileName: string;
+  fileExtension: string;
+  path: string;
+  position:number;
 }
 
 
 export class OperationFileResult{
-  Caption:string
-  Message:string
-  Success: Boolean
-  FileResponse: FileResponse;
-  FileResponses: FileResponse[]=[]
+  caption:string
+  message:string
+  success: Boolean
+  fileResponse: fileResponse;
+  fileResponses: fileResponse[]=[]
 }
