@@ -14,8 +14,11 @@ export class TaskStatusPipe implements PipeTransform {
       case 2:
         result = 'Đang xử lý';
         break;
-      default:
+     case 3:
         result = 'Hoàn thành';
+        break;
+      default:
+        result ="Đã huỷ";
         break;
     }
     return result;

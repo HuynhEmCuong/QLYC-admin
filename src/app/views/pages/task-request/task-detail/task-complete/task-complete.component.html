@@ -1,3 +1,79 @@
-<p>
-  task-complete works!
-</p>
+<div class="receive-job">
+
+
+  <h3>Thông tin người xử lý </h3>
+  <div class="row form-group">
+    <div class="col-md-4">
+      <label class="badge badge-dark">Họ và tên</label>
+      <input type="text" name="updateBy" class="form-control" placeholder="Tên"
+        [value]="taskRequest.appUser==null? '':taskRequest.appUser.name" readOnly />
+    </div>
+    <div class="col-md-4">
+      <label class="badge badge-dark">Email</label>
+      <input type="text" name="updateBy" class="form-control" placeholder="Email"
+        [value]="taskRequest.appUser!=null?taskRequest.appUser.email : ''" readOnly />
+    </div>
+    <div class="col-md-4">
+      <label class="badge badge-dark">Số điện thoại</label>
+      <input type="text" name="updateBy" class="form-control" placeholder="Số điện thoại"
+        [value]="taskRequest.appUser!=null?taskRequest.appUser.phoneNumber : ''" readOnly />
+    </div>
+  </div>
+
+  <h3>Thông tin sinh viên </h3>
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label class="badge badge-dark">Họ và tên</label>
+      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.fullName"
+        readOnly />
+    </div>
+    <div class="col-md-3">
+      <label class="badge badge-dark">Email</label>
+      <input type="text" name="updateBy" class="form-control"  [value]="taskRequest.student.email"
+        readOnly />
+    </div>
+    <div class="col-md-3">
+      <label class="badge badge-dark">Số điện thoại</label>
+      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.mobi"
+        readOnly />
+    </div>
+    <div class="col-md-3">
+      <label class="badge badge-dark">Mã số sinh viên</label>
+      <input type="text" name="updateBy" class="form-control"  [value]="taskRequest.student.studentId"
+        readOnly />
+    </div>
+
+
+    <div class="task  mt-3 col-12">
+      <h3> Thông tin yêu cầu</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Loại yêu cầu</th>
+            <th>Miêu tả</th>
+            <th>Số lượng</th>
+            <th>Trạng thái</th>
+            <th>Ghi chú</th>
+            <th>File</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{taskRequest.requestType.name}}</td>
+            <td>{{taskRequest.requestType.description}}</td>
+            <td>{{taskRequest.quantity}}</td>
+            <td>{{taskRequest.status | taskstatus}}</td>
+            <td>{{taskRequest.note}}</td>
+            <td>
+              {{formatNameFile(taskRequest.fileName) || "" }}
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12 " style=" text-align: right;">
+      <button class="btn btn-warning"> Quay lại</button>
+    </div>
+  </div>
