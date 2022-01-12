@@ -38,6 +38,7 @@ import { TimeagoIntl } from 'ngx-timeago';
 import { NotificationService } from './core/services/notification/notification.service';
 import { StoreService } from './core/services/general/store.service';
 import { EmailLogService } from './core/services/system/email-log.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -74,6 +75,7 @@ const SERVICE = [
     SharedModule,
     PagesModule,
     FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -12,7 +12,7 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
   styleUrls: ['./task-handing.component.css']
 })
 export class TaskHandingComponent implements OnInit {
-  @Input() taskRequest: StudentTask ;
+  @Input() taskRequest: StudentTask;
   @Output() data = new EventEmitter<StudentTask>()
   fileNameOrgin: string;
   checkSave: boolean = true
@@ -23,7 +23,7 @@ export class TaskHandingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.checkSave = this.taskRequest.fileName !=="" ?false :true;
+    this.checkSave = this.taskRequest.fileName ? false : true;
   }
 
   onSelectFile(event: any) {
@@ -73,6 +73,8 @@ export class TaskHandingComponent implements OnInit {
       let result = await this._taskRequest.removeFile(this.taskRequest.fileName).then();
       if (result.success) {
         this._alert.success("Xoá file thành công");
+        this.taskRequest.fileName = "";
+        this.taskRequest.filePath = "";
         this.checkSave = true;
         this._sniper.hide();
       } else {
@@ -83,26 +85,33 @@ export class TaskHandingComponent implements OnInit {
   }
 
   updateFinish() {
-    
-    this.taskRequest.status = RequestStatus.complete;
+   
     if (this.taskRequest.fileName && this.taskRequest.filePath) {
+      this._sniper.show();
+      this.taskRequest.status = RequestStatus.complete;
+
       this._taskRequest.update(this.taskRequest).pipe().subscribe(res => {
         if (res.success) {
           this.taskRequest = res.data;
+          this._alert.success("Cập nhật thành  công ")
+         
           this.emitData();
         } else {
           this._alert.error("Cập nhật không thành công ")
         }
+        this._sniper.hide();
       }, error => {
         console.log(error);
         this._alert.error("Cập nhật không thành công ")
+        this._sniper.hide();
       }
       )
+    } else {
+      this._alert.error("File không được để trống")
+      return
     }
-
   }
   emitData() {
     this.data.emit(this.taskRequest)
   }
-
 }

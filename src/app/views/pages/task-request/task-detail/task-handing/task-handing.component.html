@@ -29,8 +29,7 @@
           <th>Trạng thái</th>
           <th>Ghi chú</th>
           <th>File</th>
-          <th *ngIf="checkSave==false"></th>
-          <th></th>
+          <th ></th>
         </tr>
       </thead>
       <tbody>
@@ -45,7 +44,7 @@
               <input type="file" accept=".pdf" style="display: none" (change)="onSelectFile($event)" />
             </label>
           </td>
-          <td>
+          <td >
             <button class="btn btn-success" (click)="updateFinish()">
               Hoàn thành
             </button>
@@ -58,12 +57,15 @@
 
 <ng-template #infoFile>
   <td>
-    {{formatNameFile(fileNameOrgin) ||formatNameFile(taskRequest.fileName) || "" }}
-  </td>
-  <td>
-    <button class="btn btn-danger" (click)="removeFile()">
-      <i class="fa fa-trash"></i> Xóa
-    </button>
-  </td>
+    <span>
+      {{formatNameFile(fileNameOrgin) ||formatNameFile(taskRequest.fileName) || "" }}
 
+      <button class="btn btn-danger" style="margin-left:20px;" (click)="removeFile()">
+        <i class="fa fa-trash"></i> Xóa
+      </button>
+    </span>
+
+   
+  </td>
 </ng-template>
+

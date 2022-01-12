@@ -13,6 +13,7 @@ import { TaskHandingComponent } from "./task-detail/task-handing/task-handing.co
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
+import { TaskCompleteComponent } from "./task-detail/task-complete/task-complete.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -29,7 +30,8 @@ import { BrowserModule } from "@angular/platform-browser";
         TaskRequestComponent,
         TaskDetailComponent,
         TaskReceiveComponent,
-        TaskHandingComponent
+        TaskHandingComponent,
+        TaskCompleteComponent
     ]
 })
 export class TaskRequestModule { }
