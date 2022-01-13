@@ -1,3 +1,41 @@
 .highcharts-title{
   font-family: 'Times New Roman', Times, serif !important;
 }
+.card {
+  color :white 
+  
+}
+
+h3{
+  color :white 
+}
+
+.recive{
+  background-color: #63c2de;
+  border-color: #187da0;
+}
+
+.doing{
+  background-color: #ffc107;
+  border-color: #c69500;
+}
+
+.complete{
+  background-color: #04AA6D;
+  border-color: #04AA6D;
+}
+
+.disabled{
+  background-color: #939597;
+  border-color: #939597;
+}
+
+.info {
+  margin-bottom: 10xp;
+
+}
+.info .data{
+  font-size: 26px;
+  font-weight: bold;
+  
+}

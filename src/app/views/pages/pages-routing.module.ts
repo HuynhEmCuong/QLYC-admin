@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { AuthorizationGuard } from 'src/app/core/guards/authorization.guard';
+import { TaskReportResolver } from 'src/app/core/resolvers/requestTaskReport.resolver';
 const routes: Routes = [{
     path: '',
     component: PagesComponent,
@@ -13,7 +14,10 @@ const routes: Routes = [{
     children: [
         {
             path: 'dashboard',
-            component: DashboardComponent
+            component: DashboardComponent,
+            resolve: {
+                report: TaskReportResolver,       // <== key: value (service or Dependency injection token)
+            }
         },
         {
             path: 'manager',

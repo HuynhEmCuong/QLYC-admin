@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IssueStatus } from 'src/app/core/enums/issue.enum';
+import { StudentTaskReport } from 'src/app/core/models/task-request/request-task';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,12 @@ import { IssueStatus } from 'src/app/core/enums/issue.enum';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor(  private title: Title, private router: Router) {
-
-   }
+  reportTask: StudentTaskReport;
+  constructor(private _routeActive: ActivatedRoute) {
+    this._routeActive.data.subscribe(res => {
+      this.reportTask = res.report;
+    })
+  }
 
   ngOnInit() {
 

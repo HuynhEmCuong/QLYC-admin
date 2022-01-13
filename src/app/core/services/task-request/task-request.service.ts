@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { OperationResult } from '../../models/system/operation-result';
 import { OperationFileResult } from '../../models/system/opration-file-result';
-import { StudentTask } from '../../models/task-request/request-task';
+import { StudentTask, StudentTaskReport } from '../../models/task-request/request-task';
 import { BaseService } from '../general/base.service';
 import { AuthService } from '../system/auth.service';
 
@@ -28,6 +28,10 @@ export class TaskRequestService extends BaseService<StudentTask> {
   }
   removeFile(fileName:string){
     return this.http.get<OperationResult>(`${API}/File/RemoveFile?fileName=${fileName}`).toPromise();
+  }
+
+  getReport(){
+    return this.http.get<StudentTaskReport>(`${API}/StudentTask/ReportTask`)
   }
 
 }
