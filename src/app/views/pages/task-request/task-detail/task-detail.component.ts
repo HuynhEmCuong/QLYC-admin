@@ -25,11 +25,10 @@ export class TaskDetailComponent implements OnInit {
       animation: true
     })
     //Set default step
-    this.steperTo(this.taskRequest.status)
+    this.steperTo(this.taskRequest.status ===4 ? 3: this.taskRequest.status)
   }
 
   updateData($event) {
-    debugger
     this.taskRequest = $event;
     this.steperTo(this.taskRequest.status)
   }

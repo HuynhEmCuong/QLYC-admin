@@ -20,8 +20,8 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient,
     private router: Router,
-    private alertService:AlertifyService,
-    ) {
+    private alertService: AlertifyService,
+  ) {
   }
 
 
@@ -48,51 +48,59 @@ export class AuthService {
     return token != null && !this.jwtHelper.isTokenExpired(token);
   }
 
-  setUserToken(response:OperationResult):UserToken{
- 
+  setUserToken(response: OperationResult): UserToken {
+
     let userDecode = this.jwtHelper.decodeToken(response.data.token);
     let user = new UserToken();
-    user.avatar=userDecode.avatar;
-    user.email= userDecode.email;
-    user.id= userDecode.id;
-    user.name= userDecode.name;
-    user.permissions=response.data.Permission;
-    user.phonenumber= userDecode.phonenumber;
-    user.roles= JSON.parse(userDecode.roles);
-    user.unique_name= userDecode.unique_name;
-    user.token=response.data.token;
-    user.refresh_token=response.data.RefreshToken;
+    user.avatar = userDecode.avatar;
+    user.email = userDecode.email;
+    user.id = userDecode.id;
+    user.name = userDecode.name;
+    user.permissions = response.data.Permission;
+    user.phonenumber = userDecode.phonenumber;
+    user.roles = JSON.parse(userDecode.roles);
+    user.unique_name = userDecode.unique_name;
+    user.token = response.data.token;
+    user.refresh_token = response.data.RefreshToken;
     return user;
   }
 
-  setCurrentUser(user:UserToken) {
+  setCurrentUser(user: UserToken) {
     this.currentUser = user;
     localStorage.setItem('user', JSON.stringify(this.currentUser));
     this.currentUserSource.next(this.currentUser);
   }
 
-  getTokenExpirationDate(){
+  getTokenExpirationDate() {
     return this.jwtHelper.getTokenExpirationDate(this.currentUser.token);
   }
 
-  refreshToken(){
-    let model={
+  refreshToken() {
+    let model = {
       token: this.currentUser.token,
       refreshToken: this.currentUser.refresh_token
     };
-    return  this.http.post<OperationResult>(`${API_URL}/Authen/RefreshToken`, model).pipe(
-        map((response:OperationResult)=>{
-          if(response.success){
-            this.setCurrentUser(this.setUserToken(response));
-          }
-          return response;
-        })
-      );
-}
+    return this.http.post<OperationResult>(`${API_URL}/Authen/RefreshToken`, model).pipe(
+      map((response: OperationResult) => {
+        if (response.success) {
+          this.setCurrentUser(this.setUserToken(response));
+        }
+        return response;
+      })
+    );
+  }
 
-  forgotPassword = (email) =>this.http.get(`${API_URL}/Authen/ForgotPassword?Email=${email}`);
+  checkRole() {
+    let user: UserToken = JSON.parse(localStorage.getItem("user"));
+    if (user.roles.find(role => role.toUpperCase() == 'ADMIN')) {
+      return true;
+    } else
+      return false;
+  }
+
+  forgotPassword = (email) => this.http.get(`${API_URL}/Authen/ForgotPassword?Email=${email}`);
 
   resetPassword = (id) => this.http.get(`${API_URL}/Authen/ResetPassword?id=${id}`);
 
-  changePassword = (id,password) => this.http.get(`${API_URL}/Authen/ChangePassword?id=${id}&password=${password}`);
+  changePassword = (id, password) => this.http.get(`${API_URL}/Authen/ChangePassword?id=${id}&password=${password}`);
 }

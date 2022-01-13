@@ -58,16 +58,16 @@
               <dxo-lookup [dataSource]="dataStatusRequest" displayExpr="name" valueExpr="id" allowClearing="true">
               </dxo-lookup>
             </dxi-column>
-            <dxi-column dataField="createDate" dataType="date" sortOrder="desc"  format="dd/MM/yyyy " caption="Ngày nộp"></dxi-column>
-            <dxi-column dataField="assignDate" dataType="date" format="dd/MM/yyyy" caption="Ngày giao việc">
+            <dxi-column dataField="createDate" dataType="date" sortOrder="desc"  format="dd/MM/yyyy HH:mm" caption="Ngày nộp"></dxi-column>
+            <dxi-column dataField="assignDate" dataType="date" format="dd/MM/yyyy HH:mm" caption="Ngày giao việc">
             </dxi-column>
-            <dxi-column dataField="finishDate" dataType="date" format="dd/MM/yyyy" caption="Ngày hoàn thành">
+            <dxi-column dataField="finishDate" dataType="date" format="dd/MM/yyyy HH:mm" caption="Ngày hoàn thành">
             </dxi-column>
             <!-- <div *dxTemplate="let data of 'statusTemplate'">
               <div>{{data.value ==1?"Hoạt động":"Không hoạt động"}}</div>
           </div> -->
             <dxi-column type="buttons">
-              <dxi-button hint="Chỉnh sửa" icon="edit" [visible]="1" [onClick]="onReditDetail"></dxi-button>
+              <dxi-button   hint="Chỉnh sửa" icon="edit" [visible]="1" [onClick]="onReditDetail"></dxi-button>
             </dxi-column>
           </dx-data-grid>
         </div>

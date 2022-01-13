@@ -29,7 +29,7 @@
           <th>Trạng thái</th>
           <th>Ghi chú</th>
           <th>File</th>
-          <th ></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -44,7 +44,7 @@
               <input type="file" accept=".pdf" style="display: none" (change)="onSelectFile($event)" />
             </label>
           </td>
-          <td >
+          <td>
             <button class="btn btn-success" (click)="updateFinish()">
               Hoàn thành
             </button>
@@ -58,14 +58,13 @@
 <ng-template #infoFile>
   <td>
     <span>
-      {{formatNameFile(fileNameOrgin) ||formatNameFile(taskRequest.fileName) || "" }}
+      {{fileNameOrgin||taskRequest.fileName || "" |compactFile}}
 
       <button class="btn btn-danger" style="margin-left:20px;" (click)="removeFile()">
         <i class="fa fa-trash"></i> Xóa
       </button>
     </span>
 
-   
+
   </td>
 </ng-template>
-

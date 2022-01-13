@@ -24,23 +24,19 @@
   <div class="row form-group">
     <div class="col-md-3">
       <label class="badge badge-dark">Họ và tên</label>
-      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.fullName"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.fullName" readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Email</label>
-      <input type="text" name="updateBy" class="form-control"  [value]="taskRequest.student.email"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.email" readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Số điện thoại</label>
-      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.mobi"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.mobi" readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Mã số sinh viên</label>
-      <input type="text" name="updateBy" class="form-control"  [value]="taskRequest.student.studentId"
-        readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.studentId" readOnly />
     </div>
 
 
@@ -65,7 +61,7 @@
             <td>{{taskRequest.status | taskstatus}}</td>
             <td>{{taskRequest.note}}</td>
             <td>
-              {{formatNameFile(taskRequest.fileName) || "" }}
+              {{taskRequest.fileName|| "" |compactFile }}
             </td>
 
           </tr>
@@ -74,6 +70,11 @@
     </div>
 
     <div class="col-12 " style=" text-align: right;">
-      <button class="btn btn-warning"> Quay lại</button>
+      <button class="btn btn-warning" [routerLink]="['/pages/task-request/list']"> Quay lại</button>
+      <span *ngIf="taskRequest.status !==4"> 
+        <button *checkPermission class="btn btn-danger ml-3" (click)="cancelTask()"> Huỷ yêu cầu</button>
+      </span>
+        
+
     </div>
   </div>

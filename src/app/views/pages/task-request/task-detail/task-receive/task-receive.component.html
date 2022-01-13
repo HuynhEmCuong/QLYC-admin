@@ -31,7 +31,7 @@
     <div class="col-4">
      
     </div>
-    <div class="col-4">
+    <div class="col-4" *checkPermission>
       <label class="badge badge-dark">Giao việc cho</label>
       <select class="form-control" id="User-task" name="User-task" [(ngModel)]="userId">
         <option *ngFor="let item of users" [value]="item.id">{{item.name}}</option>

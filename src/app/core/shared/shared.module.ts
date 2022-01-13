@@ -20,6 +20,7 @@ import { interval, Observable } from 'rxjs';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { TaskStatusPipe } from '../pipes/task-status.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CheckPermissionDirective } from '../directives/check-permission.directive';
 export class MyClock extends TimeagoClock {
   tick(then: number): Observable<number> {
     return interval(2000);
@@ -32,6 +33,7 @@ export class MyClock extends TimeagoClock {
     ImagePipe,
     RbacAllowDirective,
     RbacAllowArrDirective,
+    CheckPermissionDirective,
     UploadMultipleComponent,
     EditorFullComponent,
     SafeHtmlPipe,
@@ -80,6 +82,7 @@ export class MyClock extends TimeagoClock {
     DxHtmlEditorModule,
     RbacAllowDirective,
     RbacAllowArrDirective,
+    CheckPermissionDirective,
     UploadMultipleComponent,
     EditorFullComponent,
     TimeagoModule,

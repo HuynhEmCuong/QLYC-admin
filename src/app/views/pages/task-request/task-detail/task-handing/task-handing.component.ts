@@ -57,16 +57,7 @@ export class TaskHandingComponent implements OnInit {
         );
     }
   }
-  formatNameFile(fileName: string) {
-    if (fileName) {
-      let fileExtension = fileName.split('.').pop();
-      if (fileName.length > 20) {
-        fileName = fileName.slice(0, 20) + '....' + fileExtension;
-      }
-    }
-    return fileName;
-  }
-
+ 
   removeFile() {
     this._alert.confirmInfo("Cảnh báo", "Bạn có muốn xoá file", async () => {
       this._sniper.show();
@@ -85,12 +76,12 @@ export class TaskHandingComponent implements OnInit {
   }
 
   updateFinish() {
-   
     if (this.taskRequest.fileName && this.taskRequest.filePath) {
       this._sniper.show();
       this.taskRequest.status = RequestStatus.complete;
-
-      this._taskRequest.update(this.taskRequest).pipe().subscribe(res => {
+      let data = this.taskRequest;
+      delete data.appUser;
+      this._taskRequest.update(data).pipe().subscribe(res => {
         if (res.success) {
           this.taskRequest = res.data;
           this._alert.success("Cập nhật thành  công ")

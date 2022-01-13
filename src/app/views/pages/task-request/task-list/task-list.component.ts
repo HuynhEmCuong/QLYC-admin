@@ -18,6 +18,9 @@ export class TaskListComponent implements OnInit {
         id: 2, name: 'Đang xữ lý'
       },{
         id: 3, name: 'Hoàn thành'
+      },
+      ,{
+        id: 4, name: 'Đã huỷ'
       }
     ];
     this.onReditDetail = this.onReditDetail.bind(this)
