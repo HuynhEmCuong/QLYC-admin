@@ -14,11 +14,11 @@ FROM nginx:alpine
 COPY ./dist/ /usr/share/nginx/html
 
 # Copy Nginx configuration for the application
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /home/cert
 
-COPY ./cert /home/cert
+#COPY ./cert /home/cert
 
 # Launch NGINX
 CMD [ "nginx", "-g", "daemon off;" ]

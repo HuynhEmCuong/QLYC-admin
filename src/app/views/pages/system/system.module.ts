@@ -15,6 +15,9 @@ import { OptionParametersActionComponent } from './option-parameters/option-para
 import { OptionParametersListComponent } from './option-parameters/option-parameters-list/option-parameters-list.component';
 import { SystemComponent } from './system.component';
 import { SystemRoutingModule } from './system-routing.module';
+import { DepartListComponent } from './depart/depart-list/depart-list.component';
+import { DepartActionComponent } from './depart/depart-action/depart-action.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +38,8 @@ import { SystemRoutingModule } from './system-routing.module';
     UserProfileComponent,
     PermissionComponent,
     GridDetailComponent,
+    DepartListComponent,
+    DepartActionComponent
   ]
 })
 export class SystemModule { }

@@ -7,6 +7,7 @@ import { UserProfileComponent } from './manager-account/user-profile/user-profil
 import { PermissionComponent } from './manager-account/role/permission/permission.component';
 import { OptionParametersListComponent } from './option-parameters/option-parameters-list/option-parameters-list.component';
 import { SystemComponent } from './system.component';
+import { DepartListComponent } from './depart/depart-list/depart-list.component';
 const routes: Routes = [{
     path: '',
     component: SystemComponent,
@@ -20,8 +21,12 @@ const routes: Routes = [{
             component: RoleListComponent
         },
         {
-          path: 'profile',
-          component: UserProfileComponent
+            path: 'profile',
+            component: UserProfileComponent
+        },
+        {
+            path: 'departs',
+            component: DepartListComponent
         },
         {
             path: 'option-parameters',

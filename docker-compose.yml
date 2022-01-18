@@ -12,13 +12,13 @@ networks:
 
 #SERVICES
 services:
-  fmsphuongdong_spa:
-    hostname: fmsphuongdong_spa
-    container_name: fmsphuongdong_spa
-    image: vanquyenktktbd/fmsphuongdong_spa:uat
+  qlyc-admin:
+    hostname: qlyc-admin
+    container_name: qlyc-admin
+    image: huynhcuongem75/qlyc-admin:v1.1
     build: .
     restart: always
     networks:
       - web-net
     ports:
-      - 5200:80
+      - 1011:80
