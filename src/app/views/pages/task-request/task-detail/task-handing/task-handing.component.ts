@@ -36,7 +36,7 @@ export class TaskHandingComponent implements OnInit {
         return;
       }
       const formData = new FormData();
-      let nameRequest = this.taskRequest.id + "-" + this.taskRequest.requestType.name;
+      let nameRequest = this.taskRequest.id + "-" + this.taskRequest.requestType.name.split(":")[1];
       formData.append('file', file);
       this._taskRequest
         .uploadFile(formData, nameRequest).pipe(

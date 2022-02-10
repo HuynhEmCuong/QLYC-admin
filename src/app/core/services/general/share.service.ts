@@ -12,6 +12,7 @@ constructor(private alertService:AlertifyService) { }
 
   async action(entity,apiService,callBack){
     let response:OperationResult;
+    debugger
     if(entity.id!=null && entity.id > 0 ){
        response = await apiService.update(entity).toPromise().then();
       if(response.success)

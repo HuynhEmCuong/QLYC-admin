@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DepartService } from 'src/app/core/services/depart/depart.service';
 
 @Component({
@@ -7,9 +7,12 @@ import { DepartService } from 'src/app/core/services/depart/depart.service';
   styleUrls: ['./depart-list.component.css']
 })
 export class DepartListComponent implements OnInit {
+  @ViewChild("modalAction", { static: false }) modalAction;
   dataSource: any
   dataStatus: any
-  constructor(private _service: DepartService) { }
+  constructor(private _service: DepartService) { 
+    this.onReditDetail = this.onReditDetail.bind(this)
+  }
 
   ngOnInit() {
     this.dataSource = this._service.loadDataGrid();
@@ -20,11 +23,13 @@ export class DepartListComponent implements OnInit {
       id: 2, name: 'Đã khoá'
     }]
   }
-
+  loadInit(){
+    this.dataSource.reload();
+  }
 
   onReditDetail(e) {
     let data = e.row.data;
-    // this.route.navigateByUrl(`/pages/task-request/detail/${data.id}`)
+    this.modalAction.showModal(data);
   }
 
   onCellPrepared(e) {

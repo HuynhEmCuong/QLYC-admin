@@ -12,6 +12,15 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
+      <div class="row">
+        <div class="col-12 form-group text-right">
+          <button class="btn btn-info mr-1" (click)="modalAction.showModal(null)">
+            <span class="btn-label"> <i class="fa fa-plus"></i></span> Thêm mới
+          </button>
+          <button class="btn btn-secondary mr-1" (click)="loadInit()">
+            <span class="btn-label"> <i class="fa fa-sync"></i></span> Làm mới
+          </button>
+        </div>
       <div class="col-md-12">
         <div class="table-responsive">
           <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnAutoWidth]="true"
@@ -52,3 +61,5 @@
     </div>
   </div>
 </div>
+
+<app-depart-action #modalAction (loadInit)="loadInit()"></app-depart-action>

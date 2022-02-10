@@ -1,3 +1,59 @@
-<p>
-  depart-action works!
-</p>
+<div bsModal #childModal="bs-modal" [config]="{ ignoreBackdropClick: true}" class="modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content animated fadeIn">
+      <form action="your-action" (submit)="fnSave()">
+        <div class="modal-header">
+          <h4 id="dialog-child-name" class="modal-title pull-left">
+            Thông tin người dùng
+          </h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+            <i class="dx-icon dx-icon-close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <dx-form #targetForm id="form" [(formData)]="entity" labelLocation="left">
+            <dxi-item itemType="group" [colCount]="2">
+              <dxi-item dataField="name" [label]="{text:'Tên Phòng Ban'}" [editorOptions]="{stylingMode :'outlined',
+              placeholder: 'Tên đăng nhập'}">
+                <dxi-validation-rule type="required" message="Bắt buộc nhập"></dxi-validation-rule>
+              </dxi-item>
+
+              <dxi-item dataField="note" [label]="{text:'Miêu tả'}" [editorOptions]="{stylingMode :'outlined',
+              placeholder: 'Miêu tả'}">
+
+              </dxi-item>
+
+              <dxi-item dataField="status" [label]="{text:'Trạng thái '}" editorType="dxSelectBox" [editorOptions]="{
+                displayExpr:'name',
+                valueExpr:'id',
+                stylingMode :'outlined', 
+                placeholder: 'Trạng thái',
+                dataSource:dataSourceStatus
+              }">
+                <dxi-validation-rule type="required" message="Bắt buộc chọn"></dxi-validation-rule>
+              </dxi-item>
+
+            </dxi-item>
+          </dx-form>
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-right">
+                <div>
+                  <button class="btn btn-secondary waves-effect waves-light mr-1" type="button"
+                    (click)="childModal.hide()"><span class="btn-label"><i class="fa fa-times"></i></span>Đóng</button>
+                  <button [ladda]="isLoading" class="btn btn-info waves-effect waves-light mr-1" type="button"
+                    (click)="fnSave()">
+                    <span class="btn-label"><i class="fa fa-check"></i></span>Lưu
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

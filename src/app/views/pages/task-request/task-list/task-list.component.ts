@@ -10,16 +10,17 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
 export class TaskListComponent implements OnInit {
   dataSource: any
   dataStatusRequest: any
-  constructor(private _service: TaskRequestService, public route: Router) {
+  constructor(private _service: TaskRequestService, public route: Router,
+  ) {
     this.dataStatusRequest = [
       {
         id: 1, name: 'Đã nhận'
       }, {
         id: 2, name: 'Đang xữ lý'
-      },{
+      }, {
         id: 3, name: 'Hoàn thành'
       },
-      ,{
+      , {
         id: 4, name: 'Đã huỷ'
       }
     ];
@@ -28,15 +29,31 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = this._service.loadDataGrid();
+
   }
 
   reloadData = () => this.dataSource.reload()
 
   onCellPrepared(e) {
     if (e.data != null && e.data.status == 3) {
-      if (e.rowType == 'data') {
-        e.cellElement.style.background = 'green'
-        e.cellElement.style.color = 'white'
+      // if (e.rowType == 'data') {
+      //   e.cellElement.style.background = 'green'
+      //   e.cellElement.style.color = 'white'
+      // }
+
+      switch (e.data.status) {
+        case 1:
+          e.cellElement.style.background = '#3778c2'
+          break;
+        case 2:
+          e.cellElement.style.background = 'green'
+          break;
+        case 3:
+          e.cellElement.style.background = 'green'
+          break;
+        case 4:
+          e.cellElement.style.background = 'green'
+          break;
       }
     }
   }

@@ -15,7 +15,7 @@ services:
   qlyc-admin:
     hostname: qlyc-admin
     container_name: qlyc-admin
-    image: huynhcuongem75/qlyc-admin:v1.1
+    image: huynhcuongem75/qlyc-admin:v1.2
     build: .
     restart: always
     networks:
