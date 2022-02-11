@@ -4,21 +4,21 @@
     <div class="col-md-4">
       <label class="badge badge-dark">Họ và tên</label>
       <input type="text" name="updateBy" class="form-control" placeholder="Tên"
-        [value]="taskRequest.appUser==null? '':taskRequest.appUser.name" readOnly />
+        [value]="studentTask.appUser==null? '':studentTask.appUser.name" readOnly />
     </div>
     <div class="col-md-4">
       <label class="badge badge-dark">Email</label>
       <input type="text" name="updateBy" class="form-control" placeholder="Email"
-        [value]="taskRequest.appUser!=null?taskRequest.appUser.email : ''" readOnly />
+        [value]="studentTask.appUser!=null?studentTask.appUser.email : ''" readOnly />
     </div>
     <div class="col-md-4">
       <label class="badge badge-dark">Số điện thoại</label>
       <input type="text" name="updateBy" class="form-control" placeholder="Số điện thoại"
-        [value]="taskRequest.appUser!=null?taskRequest.appUser.phoneNumber : ''" readOnly />
+        [value]="studentTask.appUser!=null?studentTask.appUser.phoneNumber : ''" readOnly />
     </div>
   </div>
 
-  <div class="task  mt-3">
+ <div class="task  mt-3">
     <h3> Thông tin yêu cầu</h3>
     <table class="table table-bordered">
       <thead>
@@ -34,11 +34,11 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{taskRequest.requestType.name}}</td>
-          <td>{{taskRequest.requestType.description}}</td>
-          <td>{{taskRequest.quantity}}</td>
-          <td>{{taskRequest.status | taskstatus}}</td>
-          <td>{{taskRequest.note}}</td>
+          <td>{{studentTask.requestType.name}}</td>
+          <td>{{studentTask.requestType.description}}</td>
+          <td>{{studentTask.taskRequest.quantity}}</td>
+          <td>{{studentTask.taskRequest.status | taskstatus}}</td>
+          <td>{{studentTask.taskRequest.note}}</td>
           <td *ngIf="checkSave  ; else infoFile">
             <label class="btn btn-upload"><i class="fa fa-upload"></i> Tải lên
               <input type="file" accept=".pdf" style="display: none" (change)="onSelectFile($event)" />
@@ -58,13 +58,11 @@
 <ng-template #infoFile>
   <td>
     <span>
-      {{fileNameOrgin||taskRequest.fileName || "" |compactFile}}
+      {{fileNameOrgin||studentTask.taskRequest.fileName || "" |compactFile}}
 
       <button class="btn btn-danger" style="margin-left:20px;" (click)="removeFile()">
         <i class="fa fa-trash"></i> Xóa
       </button>
     </span>
-
-
   </td>
 </ng-template>

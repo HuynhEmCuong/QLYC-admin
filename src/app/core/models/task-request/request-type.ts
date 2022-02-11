@@ -1,6 +1,6 @@
 import { Status } from "../../enums/status.enum";
 
-export interface RequestType {
+export class RequestType {
     id: number;
     name: string;
     description: string;

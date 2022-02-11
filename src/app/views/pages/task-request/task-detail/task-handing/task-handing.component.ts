@@ -12,7 +12,7 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
   styleUrls: ['./task-handing.component.css']
 })
 export class TaskHandingComponent implements OnInit {
-  @Input() taskRequest: StudentTask;
+  @Input() studentTask: StudentTask;
   @Output() data = new EventEmitter<StudentTask>()
   fileNameOrgin: string;
   checkSave: boolean = true
@@ -23,7 +23,7 @@ export class TaskHandingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.checkSave = this.taskRequest.fileName ? false : true;
+    this.checkSave = this.studentTask.taskRequest.fileName ? false : true;
   }
 
   onSelectFile(event: any) {
@@ -36,7 +36,7 @@ export class TaskHandingComponent implements OnInit {
         return;
       }
       const formData = new FormData();
-      let nameRequest = this.taskRequest.id + "-" + this.taskRequest.requestType.name.split(":")[1];
+      let nameRequest = this.studentTask.taskRequest.id + "-" + this.studentTask.requestType.name.split(":")[1];
       formData.append('file', file);
       this._taskRequest
         .uploadFile(formData, nameRequest).pipe(
@@ -45,8 +45,8 @@ export class TaskHandingComponent implements OnInit {
         .subscribe(
           (res) => {
             if (res.success) {
-              this.taskRequest.filePath = res.fileResponse.fileFullPath;
-              this.taskRequest.fileName = res.fileResponse.fileLocalName;
+              this.studentTask.taskRequest.filePath = res.fileResponse.fileFullPath;
+              this.studentTask.taskRequest.fileName = res.fileResponse.fileLocalName;
               this.fileNameOrgin = res.fileResponse.fileOriginalName;
             }
           },
@@ -57,35 +57,33 @@ export class TaskHandingComponent implements OnInit {
         );
     }
   }
- 
+
   removeFile() {
     this._alert.confirmInfo("Cảnh báo", "Bạn có muốn xoá file", async () => {
       this._sniper.show();
-      let result = await this._taskRequest.removeFile(this.taskRequest.fileName).then();
+      let result = await this._taskRequest.removeFile(this.studentTask.taskRequest.fileName).then();
       if (result.success) {
         this._alert.success("Xoá file thành công");
-        this.taskRequest.fileName = "";
-        this.taskRequest.filePath = "";
+        this.studentTask.taskRequest.fileName = "";
+        this.studentTask.taskRequest.filePath = "";
         this.checkSave = true;
-        this._sniper.hide();
       } else {
         this._alert.warning("Lỗi hệ thống")
-        this._sniper.hide();
+        
       }
+      this._sniper.hide();
     })
   }
 
   updateFinish() {
-    if (this.taskRequest.fileName && this.taskRequest.filePath) {
+    if (this.studentTask.taskRequest.fileName && this.studentTask.taskRequest.filePath) {
       this._sniper.show();
-      this.taskRequest.status = RequestStatus.complete;
-      let data = this.taskRequest;
-      delete data.appUser;
+      this.studentTask.taskRequest.status = RequestStatus.complete;
+      let data = this.studentTask.taskRequest;
       this._taskRequest.update(data).pipe().subscribe(res => {
         if (res.success) {
-          this.taskRequest = res.data;
+          this.studentTask.taskRequest = res.data;
           this._alert.success("Cập nhật thành  công ")
-         
           this.emitData();
         } else {
           this._alert.error("Cập nhật không thành công ")
@@ -93,7 +91,7 @@ export class TaskHandingComponent implements OnInit {
         this._sniper.hide();
       }, error => {
         console.log(error);
-        this._alert.error("Cập nhật không thành công ")
+        this._alert.error("Lỗi hệ thống")
         this._sniper.hide();
       }
       )
@@ -103,6 +101,6 @@ export class TaskHandingComponent implements OnInit {
     }
   }
   emitData() {
-    this.data.emit(this.taskRequest)
+    this.data.emit(this.studentTask)
   }
 }

@@ -12,7 +12,7 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
   styleUrls: ['./task-complete.component.css']
 })
 export class TaskCompleteComponent implements OnInit {
-  @Input() taskRequest: StudentTask;
+  @Input() studentTask: StudentTask;
   constructor(private readonly _alert: AlertifyService,
     private readonly _takRequestService: TaskRequestService,
     private readonly _sniper: NgxSpinnerService) { }
@@ -33,18 +33,18 @@ export class TaskCompleteComponent implements OnInit {
   cancelTask() {
     this._alert.confirmInfo("Cảnh báo", "Bạn có muốn huỷ yêu cầu này", () => {
       this._sniper.show();
-      let data = this.taskRequest;
-      delete data.appUser;
-      data.status =RequestStatus.disbaled
-      this._takRequestService.update(data).pipe(tap(() => this._sniper.hide())).subscribe(res => {
-        if (res.success) {
-          this._alert.success("Thay đổi trạng thái thành công");
-          this.taskRequest = res.data;
+      // let data = this.taskRequest;
+      // delete data.appUser;
+      // data.status =RequestStatus.disbaled
+      // this._takRequestService.update(data).pipe(tap(() => this._sniper.hide())).subscribe(res => {
+      //   if (res.success) {
+      //     this._alert.success("Thay đổi trạng thái thành công");
+      //     this.taskRequest = res.data;
 
-        } else {
-          this._alert.error("Lỗi hệ thống")
-        }
-      });
+      //   } else {
+      //     this._alert.error("Lỗi hệ thống")
+      //   }
+      // });
 
 
     })

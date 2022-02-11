@@ -52,15 +52,15 @@
             <div class="col-12">
               <div class="bs-stepper-content ">
                 <div id="test-l-1" class="content ">
-                  <app-task-receive (data)="updateData($event)" [taskRequest]="taskRequest"></app-task-receive>
+                  <app-task-receive (data)="updateData($event)" [studentTask]="studentTask"></app-task-receive>
                 </div>
                 <div id="test-l-2" class="content ">
-                  <app-task-handing [taskRequest]="taskRequest" (data)="updateData($event)"> </app-task-handing>
+                  <app-task-handing [studentTask]="studentTask" (data)="updateData($event)"> </app-task-handing>
                   <!-- <button  class="btn btn-primary">Next</button> -->
                 </div>
                 <div id="test-l-3" class="content  ">
                   <!-- <button type="submit" class="btn btn-primary mt-5">Submit</button> -->
-                  <app-task-complete [taskRequest]="taskRequest"></app-task-complete>
+                  <app-task-complete [studentTask]="studentTask"></app-task-complete>
                 </div>
               </div>
             </div>
@@ -71,3 +71,4 @@
 
   </div>
 </div>
+<ngx-spinner bdColor = "rgba(23,65,104,0.29)" size = "medium" color = "#174168" type = "line-spin-fade-rotating" [fullScreen] = "true"><p style="color: #d5caba;font-size: 18px;" > Loading... </p></ngx-spinner>

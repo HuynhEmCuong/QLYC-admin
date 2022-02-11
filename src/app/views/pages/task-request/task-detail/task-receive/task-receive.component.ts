@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { RequestStatus } from 'src/app/core/enums/requestStatus.enum';
 import { UserToken } from 'src/app/core/models/dtos/user-token';
 import { User } from 'src/app/core/models/system/user';
@@ -16,14 +17,15 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
 export class TaskReceiveComponent implements OnInit {
   userId: string;
   users: User[];
-  @Input() taskRequest: StudentTask
+  @Input() studentTask: StudentTask 
   @Output() data = new EventEmitter<StudentTask>()
 
   constructor(
     private _taskRequest: TaskRequestService,
     private _alert: AlertifyService,
     private _auth: AuthService,
-    private _user: UserService
+    private _user: UserService,
+    private _sniper: NgxSpinnerService
   ) {
     this._auth.currentUser$.subscribe(res => this.userId = res.id);
   }
@@ -39,22 +41,28 @@ export class TaskReceiveComponent implements OnInit {
   }
 
   receiveTask() {
+    this._sniper.show();
     //Update status and reciver 
-    this.taskRequest.receiverId = +this.userId;
-    this.taskRequest.status = RequestStatus.doing;
-    this._taskRequest.update(this.taskRequest).subscribe(res => {
+    this.studentTask.taskRequest.receiverId = +this.userId;
+    this.studentTask.taskRequest.status = RequestStatus.doing;
+    this._taskRequest.update(this.studentTask.taskRequest).subscribe(res => {
       if (res.success) {
+        debugger
+        this._sniper.hide();
+        this.studentTask.appUser = res.data.appUser;
         this._alert.success("Update thành công")
-        this.taskRequest = res.data;
         this.emitData()
       } else {
+       
         this._alert.error("Lỗi hệ thống")
       }
+      this._sniper.hide();
+     
     })
   }
 
   emitData() {
-    this.data.emit(this.taskRequest)
+    this.data.emit(this.studentTask)
   }
 
 }

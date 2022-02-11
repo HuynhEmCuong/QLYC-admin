@@ -3,22 +3,22 @@
   <div class="row form-group">
     <div class="col-md-3">
       <label class="badge badge-dark">Họ và tên</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.fullName"
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="studentTask.student.fullName"
         readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Email</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.email"
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="studentTask.student.email"
         readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Số điện thoại</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.mobi"
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="studentTask.student.mobi"
         readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Mã số sinh viên</label>
-      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="taskRequest.student.studentId"
+      <input type="text" name="updateBy" class="form-control" placeholder="Họ" [value]="studentTask.student.studentId"
         readOnly />
     </div>
 
@@ -53,9 +53,9 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td>{{taskRequest.requestType.name}}</td>
-          <td>{{taskRequest.quantity}}</td>
-          <td>{{taskRequest.note}}</td>
+          <td>{{studentTask.requestType.name}}</td>
+          <td>{{studentTask.taskRequest.quantity}}</td>
+          <td>{{studentTask.taskRequest.note}}</td>
           <td>
             <button class="btn btn-success" (click)="receiveTask()">
               Nhận việc

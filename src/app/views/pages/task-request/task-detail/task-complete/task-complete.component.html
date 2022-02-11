@@ -6,17 +6,17 @@
     <div class="col-md-4">
       <label class="badge badge-dark">Họ và tên</label>
       <input type="text" name="updateBy" class="form-control" placeholder="Tên"
-        [value]="taskRequest.appUser==null? '':taskRequest.appUser.name" readOnly />
+        [value]="studentTask.appUser==null? '':studentTask.appUser.name" readOnly />
     </div>
     <div class="col-md-4">
       <label class="badge badge-dark">Email</label>
       <input type="text" name="updateBy" class="form-control" placeholder="Email"
-        [value]="taskRequest.appUser!=null?taskRequest.appUser.email : ''" readOnly />
+        [value]="studentTask.appUser!=null?studentTask.appUser.email : ''" readOnly />
     </div>
     <div class="col-md-4">
       <label class="badge badge-dark">Số điện thoại</label>
       <input type="text" name="updateBy" class="form-control" placeholder="Số điện thoại"
-        [value]="taskRequest.appUser!=null?taskRequest.appUser.phoneNumber : ''" readOnly />
+        [value]="studentTask.appUser!=null?studentTask.appUser.phoneNumber : ''" readOnly />
     </div>
   </div>
 
@@ -24,19 +24,19 @@
   <div class="row form-group">
     <div class="col-md-3">
       <label class="badge badge-dark">Họ và tên</label>
-      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.fullName" readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="studentTask.student.fullName" readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Email</label>
-      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.email" readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="studentTask.student.email" readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Số điện thoại</label>
-      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.mobi" readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="studentTask.student.mobi" readOnly />
     </div>
     <div class="col-md-3">
       <label class="badge badge-dark">Mã số sinh viên</label>
-      <input type="text" name="updateBy" class="form-control" [value]="taskRequest.student.studentId" readOnly />
+      <input type="text" name="updateBy" class="form-control" [value]="studentTask.student.studentId" readOnly />
     </div>
 
 
@@ -55,13 +55,13 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{taskRequest.requestType.name}}</td>
-            <td>{{taskRequest.requestType.description}}</td>
-            <td>{{taskRequest.quantity}}</td>
-            <td>{{taskRequest.status | taskstatus}}</td>
-            <td>{{taskRequest.note}}</td>
+            <td>{{studentTask.requestType.name}}</td>
+            <td>{{studentTask.requestType.description}}</td>
+            <td>{{studentTask.taskRequest.quantity}}</td>
+            <td>{{studentTask.taskRequest.status | taskstatus}}</td>
+            <td>{{studentTask.taskRequest.note}}</td>
             <td>
-              {{taskRequest.fileName|| "" |compactFile }}
+              {{studentTask.taskRequest.fileName|| "" |compactFile }}
             </td>
 
           </tr>
@@ -71,7 +71,7 @@
 
     <div class="col-12 " style=" text-align: right;">
       <button class="btn btn-warning" [routerLink]="['/pages/task-request/list']"> Quay lại</button>
-      <span *ngIf="taskRequest.status !==4"> 
+      <span *ngIf="studentTask.taskRequest.status !==4"> 
         <button *checkPermission class="btn btn-danger ml-3" (click)="cancelTask()"> Huỷ yêu cầu</button>
       </span>
         

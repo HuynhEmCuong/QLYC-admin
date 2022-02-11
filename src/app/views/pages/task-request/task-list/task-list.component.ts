@@ -35,26 +35,24 @@ export class TaskListComponent implements OnInit {
   reloadData = () => this.dataSource.reload()
 
   onCellPrepared(e) {
-    if (e.data != null && e.data.status == 3) {
-      // if (e.rowType == 'data') {
-      //   e.cellElement.style.background = 'green'
-      //   e.cellElement.style.color = 'white'
-      // }
-
+    if (e.data != null && e.rowType == 'data' && e.columnIndex ==6) {
+      console.log(e)
       switch (e.data.status) {
         case 1:
           e.cellElement.style.background = '#3778c2'
           break;
         case 2:
-          e.cellElement.style.background = 'green'
+          e.cellElement.style.background = '#FF6A3D'
           break;
         case 3:
           e.cellElement.style.background = 'green'
           break;
         case 4:
-          e.cellElement.style.background = 'green'
+          e.cellElement.style.background = '#949494'
           break;
       }
+
+      e.cellElement.style.color = 'white'
     }
   }
 

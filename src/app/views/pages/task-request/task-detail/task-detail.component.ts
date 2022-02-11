@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Stepper from 'bs-stepper';
 import { UserToken } from 'src/app/core/models/dtos/user-token';
-import { StudentTask } from 'src/app/core/models/task-request/request-task';
+import { StudentTask, TaskRequest } from 'src/app/core/models/task-request/request-task';
 import { AuthService } from 'src/app/core/services/system/auth.service';
 @Component({
   selector: 'app-task-detail',
@@ -10,12 +10,16 @@ import { AuthService } from 'src/app/core/services/system/auth.service';
   styleUrls: ['./task-detail.component.scss']
 })
 export class TaskDetailComponent implements OnInit {
-  taskRequest: StudentTask ;
+  studentTask: StudentTask;
   private stepper: Stepper;
   constructor(private _routeActive: ActivatedRoute,
-    ) {
+  ) {
     this._routeActive.data.subscribe((res) => {
-      this.taskRequest = res.task;
+
+      this.studentTask = new StudentTask(res.task)
+      this.studentTask.appUser = res.task.appUser
+      this.studentTask.requestType = res.task.requestType
+      this.studentTask.student = res.task.student
     });
   }
 
@@ -25,15 +29,15 @@ export class TaskDetailComponent implements OnInit {
       animation: true
     })
     //Set default step
-    this.steperTo(this.taskRequest.status ===4 ? 3: this.taskRequest.status)
+    this.steperTo(this.studentTask.taskRequest.status === 4 ? 3 : this.studentTask.taskRequest.status)
   }
 
   updateData($event) {
-    this.taskRequest = $event;
-    this.steperTo(this.taskRequest.status)
+    this.studentTask = $event;
+    this.steperTo(this.studentTask.taskRequest.status)
   }
 
-  
+
   steperNext() {
     this.stepper.next();
   }
