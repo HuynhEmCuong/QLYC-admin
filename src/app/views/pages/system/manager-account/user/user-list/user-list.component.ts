@@ -41,7 +41,6 @@ export class UserListComponent implements OnInit {
   }
 
   showModal(e){
-    debugger
     this.modalChild.showChildModal(e.row.data);
   }
 

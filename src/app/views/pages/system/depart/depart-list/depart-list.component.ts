@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DepartService } from 'src/app/core/services/depart/depart.service';
+import { ShareService } from 'src/app/core/services/general/share.service';
 
 @Component({
   selector: 'app-depart-list',
@@ -10,8 +11,10 @@ export class DepartListComponent implements OnInit {
   @ViewChild("modalAction", { static: false }) modalAction;
   dataSource: any
   dataStatus: any
-  constructor(private _service: DepartService) { 
-    this.onReditDetail = this.onReditDetail.bind(this)
+  constructor(private _service: DepartService,
+    private shareService:ShareService) { 
+    this.onReditDetail = this.onReditDetail.bind(this);
+    this.fnDelete = this.fnDelete.bind(this);
   }
 
   ngOnInit() {
@@ -26,6 +29,17 @@ export class DepartListComponent implements OnInit {
   loadInit(){
     this.dataSource.reload();
   }
+
+
+  fnDelete(e){
+    let id = e.row.data.id;
+    this.shareService.deleteRowGrid(id,this._service,()=>{
+      this.dataSource.reload();
+    })
+  }
+
+
+
 
   onReditDetail(e) {
     let data = e.row.data;

@@ -36,10 +36,12 @@ export class TaskHandingComponent implements OnInit {
         return;
       }
       const formData = new FormData();
-      let nameRequest = this.studentTask.taskRequest.id + "-" + this.studentTask.requestType.name.split(":")[1];
+      
+      let nameRequest = this.studentTask.requestType.name.split(":");
+      let nameFile = this.studentTask.taskRequest.id + "-" + (nameRequest[1] ? nameRequest[1] : nameRequest[0])  ;
       formData.append('file', file);
       this._taskRequest
-        .uploadFile(formData, nameRequest).pipe(
+        .uploadFile(formData, nameFile).pipe(
           tap(x => this._sniper.hide())
         )
         .subscribe(
