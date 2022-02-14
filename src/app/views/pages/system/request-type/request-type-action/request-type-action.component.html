@@ -14,12 +14,12 @@
         <div class="modal-body">
           <dx-form #targetForm id="form" [(formData)]="entity" labelLocation="left">
             <dxi-item itemType="group" [colCount]="2">
-              <dxi-item dataField="name" [label]="{text:'Tên Phòng Ban'}" [editorOptions]="{stylingMode :'outlined',
-              placeholder: 'Tên Phòng Ban'}">
+              <dxi-item dataField="name" [label]="{text:'Tên yêu cầu'}" [editorOptions]="{stylingMode :'outlined',
+              placeholder: 'Tên yêu cầu'}">
                 <dxi-validation-rule type="required" message="Bắt buộc nhập"></dxi-validation-rule>
               </dxi-item>
 
-              <dxi-item dataField="note" [label]="{text:'Miêu tả'}" [editorOptions]="{stylingMode :'outlined',
+              <dxi-item dataField="description" [label]="{text:'Miêu tả'}" [editorOptions]="{stylingMode :'outlined',
               placeholder: 'Miêu tả'}">
 
               </dxi-item>

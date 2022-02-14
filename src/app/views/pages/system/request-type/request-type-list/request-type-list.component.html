@@ -1,0 +1,67 @@
+<div class="row page-titles">
+  <div class="col-md-5 col-8 align-self-center">
+    <h3 class="text-themecolor">Danh mục bộ phận</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/pages/dashboard']">Trang chủ</a></li>
+      <li class="breadcrumb-item active">Danh sách bộ phân</li>
+    </ol>
+  </div>
+  <div class="col-md-7">
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="row">
+        <div class="col-12 form-group text-right">
+          <button class="btn btn-info mr-1" (click)="modalAction.showModal(null)">
+            <span class="btn-label"> <i class="fa fa-plus"></i></span> Thêm mới
+          </button>
+          <button class="btn btn-secondary mr-1" (click)="loadInit()">
+            <span class="btn-label"> <i class="fa fa-sync"></i></span> Làm mới
+          </button>
+        </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnAutoWidth]="true"
+            [remoteOperations]="true" [showRowLines]="true" [showColumnLines]="true" class="m-grid-5"
+            [allowColumnResizing]="true" noDaText="Không có dữ liệu !" [focusedRowEnabled]="true"
+            [columnHidingEnabled]="true" columnResizingMode="widget" >
+
+            <!-- Option grid -->
+            <dxo-sorting mode="single">
+              <!-- or "multiple" | "none" -->
+            </dxo-sorting>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5,10,25, 50, 100]"
+              [showPageSizeSelector]="true" [showNavigationButtons]="true" [showInfo]="true"
+              infoText="Trang #{0}. Tổng: {1} ({2} danh mục yêu cầu)">
+              ></dxo-pager>
+            <!-- End option grid -->
+
+            <dxi-column dataField="name" caption="Tên yêu cầu"></dxi-column>
+            <dxi-column dataField="description" caption="Miêu tả"></dxi-column>
+            <dxi-column dataField="status" caption="Trạng thái">
+              <dxo-lookup [dataSource]="dataStatus" displayExpr="name" valueExpr="id" allowClearing="true">
+              </dxo-lookup>
+            </dxi-column>
+            <!-- <dxi-column  dataField="name" caption="Tên phòng ban"></dxi-column> -->
+
+            <!-- <div *dxTemplate="let data of 'statusTemplate'">
+                  <div>{{data.value ==1?"Hoạt động":"Không hoạt động"}}</div>
+              </div> -->
+            <dxi-column type="buttons">
+              <dxi-button hint="Chỉnh sửa" icon="edit" [visible]="1" [onClick]="onReditDetail"></dxi-button>
+
+              <dxi-button hint="Xoá" icon="trash" [visible]="1"  [onClick]="fnDelete"></dxi-button>
+            </dxi-column>
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-request-type-action #modalAction (loadInit)="loadInit()"></app-request-type-action>

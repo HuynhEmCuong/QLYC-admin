@@ -17,6 +17,8 @@ import { SystemComponent } from './system.component';
 import { SystemRoutingModule } from './system-routing.module';
 import { DepartListComponent } from './depart/depart-list/depart-list.component';
 import { DepartActionComponent } from './depart/depart-action/depart-action.component';
+import { RequestTypeListComponent } from './request-type/request-type-list/request-type-list.component';
+import { RequestTypeActionComponent } from './request-type/request-type-action/request-type-action.component';
 
 @NgModule({
   imports: [
@@ -39,7 +41,9 @@ import { DepartActionComponent } from './depart/depart-action/depart-action.comp
     PermissionComponent,
     GridDetailComponent,
     DepartListComponent,
-    DepartActionComponent
+    DepartActionComponent,
+    RequestTypeListComponent,
+    RequestTypeActionComponent
   ]
 })
 export class SystemModule { }

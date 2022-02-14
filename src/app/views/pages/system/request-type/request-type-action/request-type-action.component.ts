@@ -1,20 +1,20 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DxFormComponent } from 'devextreme-angular';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Department } from 'src/app/core/models/depart/depart';
-import { DepartService } from 'src/app/core/services/depart/depart.service';
+import { RequestType } from 'src/app/core/models/task-request/request-type';
 import { ShareService } from 'src/app/core/services/general/share.service';
+import { RequestTypeService } from 'src/app/core/services/request-type/request-type.service';
 
 @Component({
-  selector: 'app-depart-action',
-  templateUrl: './depart-action.component.html',
-  styleUrls: ['./depart-action.component.css']
+  selector: 'app-request-type-action',
+  templateUrl: './request-type-action.component.html',
+  styleUrls: ['./request-type-action.component.css']
 })
-export class DepartActionComponent implements OnInit {
+export class RequestTypeActionComponent implements OnInit {
   @ViewChild("childModal", { static: false }) childModal: ModalDirective;
   @ViewChild("targetForm", { static: true }) targetForm: DxFormComponent;
   @Output() loadInit = new EventEmitter<void>();
-  entity: Department = new Department();
+  entity: RequestType = new RequestType();
   isLoading: boolean = false;
   dataSourceStatus = [{
     id: 1,
@@ -24,19 +24,17 @@ export class DepartActionComponent implements OnInit {
     id: 0,
     name: 'Không hoạt động'
   }]
-  constructor(private shareService: ShareService,
-    private readonly dept: DepartService) {
-  }
+  constructor(private readonly shareService: ShareService,
+    private readonly  _requestType: RequestTypeService) { }
 
   ngOnInit() {
-    // this.entity.status = 1;
   }
 
   fnSave() {
     let validation: any = this.targetForm.instance.validate();
     this.shareService.validateDxForm(validation, (isValid) => {
       if (isValid) {
-        this.shareService.action(this.entity, this.dept, (res) => {
+        this.shareService.action(this.entity, this._requestType, (res) => {
           if (res.success) {
             this.childModal.hide();
             this.loadInit.emit();
@@ -46,9 +44,9 @@ export class DepartActionComponent implements OnInit {
     })
   }
 
-  async showModal(item: Department) {
+  async showModal(item: RequestType) {
     if (item) {
-      this.entity = await this.dept.findById(item.id).toPromise().then();
+      this.entity = await this._requestType.findById(item.id).toPromise().then();
     } else {
       this.targetForm.instance.resetValues();
       this.entity.status = 1;
@@ -57,4 +55,5 @@ export class DepartActionComponent implements OnInit {
   }
 
   hideModal = () => this.childModal.hide()
+
 }

@@ -8,6 +8,7 @@ import { PermissionComponent } from './manager-account/role/permission/permissio
 import { OptionParametersListComponent } from './option-parameters/option-parameters-list/option-parameters-list.component';
 import { SystemComponent } from './system.component';
 import { DepartListComponent } from './depart/depart-list/depart-list.component';
+import { RequestTypeListComponent } from './request-type/request-type-list/request-type-list.component';
 const routes: Routes = [{
     path: '',
     component: SystemComponent,
@@ -27,6 +28,10 @@ const routes: Routes = [{
         {
             path: 'departs',
             component: DepartListComponent
+        },
+        {
+            path: 'request-type',
+            component: RequestTypeListComponent
         },
         {
             path: 'option-parameters',
