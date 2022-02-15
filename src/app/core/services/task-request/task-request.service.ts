@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { UserToken } from '../../models/dtos/user-token';
 import { OperationResult } from '../../models/system/operation-result';
 import { OperationFileResult } from '../../models/system/opration-file-result';
 import { StudentTask, StudentTaskReport } from '../../models/task-request/request-task';
@@ -32,6 +33,14 @@ export class TaskRequestService extends BaseService<StudentTask> {
 
   getReport(){
     return this.http.get<StudentTaskReport>(`${API}/StudentTask/ReportTask`)
+  }
+
+
+  checkTaskOfUser(userId :number, taskId:number){
+    let user: UserToken = JSON.parse(localStorage.getItem("user"));
+    let id = user.id
+
+    return this.http.get<OperationResult>(`${API}/StudentTask/CheckTaskOfUser?userId=${userId}&taskId=${taskId}`);
   }
 
 }
