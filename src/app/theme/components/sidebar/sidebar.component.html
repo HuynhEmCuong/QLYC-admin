@@ -46,7 +46,7 @@
         </li>
         
 
-        <li *ngIf="user.unique_name==='admin'">
+        <li *ngIf="user.roles[0]==='Admin'">
           <a> <i class="fa fa-cog"   routerLinkActive="active"   aria-expanded="false"></i> QUẢN LÝ HỆ THỐNG
           </a>
 
