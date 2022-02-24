@@ -29,14 +29,13 @@ export class TaskHandingComponent implements OnInit {
   onSelectFile(event: any) {
     this._sniper.show();
     if (event.target.files && event.target.files[0]) {
-      this.checkSave = false;
       const file = event.target.files[0];
       if (file.size > 10485760) {
         this._alert.warning('Please select a file maximum size 10M!');
+        this._sniper.hide();
         return;
       }
       const formData = new FormData();
-      
       let nameRequest = this.studentTask.requestType.name.split(":");
       let nameFile = this.studentTask.taskRequest.id + "-" + (nameRequest[1] ? nameRequest[1] : nameRequest[0])  ;
       formData.append('file', file);
@@ -47,6 +46,7 @@ export class TaskHandingComponent implements OnInit {
         .subscribe(
           (res) => {
             if (res.success) {
+              this.checkSave = false;
               this.studentTask.taskRequest.filePath = res.fileResponse.fileFullPath;
               this.studentTask.taskRequest.fileName = res.fileResponse.fileLocalName;
               this.fileNameOrgin = res.fileResponse.fileOriginalName;
