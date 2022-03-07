@@ -32,21 +32,20 @@ export class TaskCompleteComponent implements OnInit {
 
   cancelTask() {
     this._alert.confirmInfo("Cảnh báo", "Bạn có muốn huỷ yêu cầu này", () => {
+      debugger
       this._sniper.show();
-      // let data = this.taskRequest;
+      let data = this.studentTask.taskRequest;
       // delete data.appUser;
-      // data.status =RequestStatus.disbaled
-      // this._takRequestService.update(data).pipe(tap(() => this._sniper.hide())).subscribe(res => {
-      //   if (res.success) {
-      //     this._alert.success("Thay đổi trạng thái thành công");
-      //     this.taskRequest = res.data;
+      data.status =RequestStatus.disbaled
+      this._takRequestService.update(data).pipe(tap(() => this._sniper.hide())).subscribe(res => {
+        if (res.success) {
+          this._alert.success("Thay đổi trạng thái thành công");
+          this.studentTask.taskRequest = res.data;
 
-      //   } else {
-      //     this._alert.error("Lỗi hệ thống")
-      //   }
-      // });
-
-
+        } else {
+          this._alert.error("Lỗi hệ thống")
+        }
+      });
     })
   }
 }
