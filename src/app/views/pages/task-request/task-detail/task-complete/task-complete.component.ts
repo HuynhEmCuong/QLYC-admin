@@ -32,7 +32,6 @@ export class TaskCompleteComponent implements OnInit {
 
   cancelTask() {
     this._alert.confirmInfo("Cảnh báo", "Bạn có muốn huỷ yêu cầu này", () => {
-      debugger
       this._sniper.show();
       let data = this.studentTask.taskRequest;
       // delete data.appUser;

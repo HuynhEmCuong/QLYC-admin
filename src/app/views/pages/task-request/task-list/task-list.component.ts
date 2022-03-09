@@ -60,7 +60,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onReditDetail(e) {
-    debugger
     let data = e.row.data;
     if (data.status == 2) {
       if (+this.user.id === data.receiverId || +this.user.id == 1) {
