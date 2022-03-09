@@ -40,7 +40,6 @@ export class TaskListComponent implements OnInit {
 
   onCellPrepared(e) {
     if (e.data != null && e.rowType == 'data' && e.columnIndex == 6) {
-      console.log(e)
       switch (e.data.status) {
         case 1:
           e.cellElement.style.background = '#3778c2'
@@ -68,7 +67,7 @@ export class TaskListComponent implements OnInit {
         this.route.navigateByUrl(`/pages/task-request/detail/${data.id}`)
 
       } else {
-        this._alert.error("Bạn không được quyền vào công việc này")
+        this._alert.warning("Bạn không được quyền vào công việc này")
         return;
       }
     } else {
