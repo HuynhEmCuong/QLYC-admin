@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IssueStatus } from 'src/app/core/enums/issue.enum';
 import { StudentTaskReport } from 'src/app/core/models/task-request/request-task';
+import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +10,10 @@ import { StudentTaskReport } from 'src/app/core/models/task-request/request-task
 })
 export class DashboardComponent implements OnInit {
   reportTask: StudentTaskReport;
-  constructor(private _routeActive: ActivatedRoute) {
+  constructor(private _routeActive: ActivatedRoute , private _alertService:AlertifyService) {
     this._routeActive.data.subscribe(res => {
       this.reportTask = res.report;
+      this._alertService.showMessage("warning","Thông báo",`Hôm nay có ${this.reportTask.receivedInDay} yêu cầu`);
     })
   }
 
