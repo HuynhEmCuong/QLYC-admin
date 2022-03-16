@@ -11,7 +11,7 @@ export class AlertifyService {
 
   constructor(
     private router: Router
-    ) {
+  ) {
     alertify.set('notifier', 'position', 'top-right');
   }
 
@@ -36,7 +36,7 @@ export class AlertifyService {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Đồng ý xóa!',
-      cancelButtonText:'Đóng'
+      cancelButtonText: 'Đóng'
     }).then((result) => {
       if (result.value) {
         callBack();
@@ -53,7 +53,7 @@ export class AlertifyService {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Đồng ý xóa!',
-      cancelButtonText:'Đóng'
+      cancelButtonText: 'Đóng'
     }).then((result) => {
       if (result.value) {
         callBack();
@@ -61,7 +61,7 @@ export class AlertifyService {
     })
   }
 
-  confirm(title:string, text:string, callBack) {
+  confirm(title: string, text: string, callBack) {
     swal.fire({
       title: title,
       text: text,
@@ -70,7 +70,7 @@ export class AlertifyService {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Đồng ý!',
-      cancelButtonText:'Đóng'
+      cancelButtonText: 'Đóng'
     }).then((result) => {
       if (result.value) {
         callBack();
@@ -78,7 +78,7 @@ export class AlertifyService {
     })
   }
 
-  confirmInfo(title:string, text:string, callBack) {
+  confirmInfo(title: string, text: string, callBack) {
     swal.fire({
       title: title,
       text: text,
@@ -87,7 +87,7 @@ export class AlertifyService {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Đồng ý!',
-      cancelButtonText:'Đóng'
+      cancelButtonText: 'Đóng'
     }).then((result) => {
       if (result.value) {
         callBack();
@@ -121,7 +121,7 @@ export class AlertifyService {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes'
     }).then((result) => {
-      if(result.isConfirmed){
+      if (result.isConfirmed) {
         callBack();
       }
     })
@@ -133,7 +133,9 @@ export class AlertifyService {
       icon: type,
       title: title,
       text: message,
-      confirmButtonText: 'Ok'
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
     })
   }
 
