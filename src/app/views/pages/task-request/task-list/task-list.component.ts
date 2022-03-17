@@ -20,7 +20,7 @@ export class TaskListComponent implements OnInit {
       {
         id: 1, name: 'Đã nhận'
       }, {
-        id: 2, name: 'Đang xữ lý'
+        id: 2, name: 'Đang xử lý'
       }, {
         id: 3, name: 'Hoàn thành'
       },
