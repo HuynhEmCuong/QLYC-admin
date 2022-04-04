@@ -19,12 +19,14 @@ export class TaskListComponent implements OnInit {
     this.dataStatusRequest = [
       {
         id: 1, name: 'Đã nhận'
-      }, {
+      }, 
+      {
         id: 2, name: 'Đang xử lý'
-      }, {
+      }, 
+      {
         id: 3, name: 'Hoàn thành'
       },
-      , {
+      {
         id: 4, name: 'Đã huỷ'
       }
     ];
