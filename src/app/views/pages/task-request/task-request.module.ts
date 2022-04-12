@@ -14,6 +14,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { TaskCompleteComponent } from "./task-detail/task-complete/task-complete.component";
+import { TaskAddComponent } from "./task-add/task-add.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -31,7 +32,8 @@ import { TaskCompleteComponent } from "./task-detail/task-complete/task-complete
         TaskDetailComponent,
         TaskReceiveComponent,
         TaskHandingComponent,
-        TaskCompleteComponent
+        TaskCompleteComponent,
+        TaskAddComponent
     ]
 })
 export class TaskRequestModule { }
