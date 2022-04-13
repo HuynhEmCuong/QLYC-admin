@@ -8,7 +8,7 @@ import { TaskRequestComponent } from "./task-request.component";
 import { TaskRequestRoutingModule } from "./task-request.routing.module";
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TaskReceiveComponent } from "./task-detail/task-receive/task-receive.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TaskHandingComponent } from "./task-detail/task-handing/task-handing.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -23,7 +23,8 @@ import { TaskAddComponent } from "./task-add/task-add.component";
         FormsModule,    
         SharedModule,
         TabsModule.forRoot(),
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        ReactiveFormsModule,
 
     ],
     declarations: [

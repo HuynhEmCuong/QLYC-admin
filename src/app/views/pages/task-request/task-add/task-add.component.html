@@ -28,40 +28,48 @@
         <div class="row form-group">
           <div class="col-md-3">
             <label class="badge badge-dark">Sinh viên</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Sinh viên" />
+            <input type="text" name="Student" [formControl]="keyword" class="form-control" placeholder="Sinh viên" />
           </div>
           <div class="col-md-3">
-            <label class="badge badge-dark">Họ tên</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Họ và tên" readonly/>
+            <label class="badge badge-dark" >Họ tên</label>
+            <input type="text" class="form-control" [(ngModel)]="studentInfo.fullName" placeholder="Họ và tên" readonly />
           </div>
           <div class="col-md-3">
             <label class="badge badge-dark">Email</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Email"  readonly/>
+            <input type="text" class="form-control" [(ngModel)]="studentInfo.email" placeholder="Email" readonly />
           </div>
           <div class="col-md-3">
             <label class="badge badge-dark">Mã số sinh viên</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Mã số SV" readonly />
+            <input type="text" class="form-control" [(ngModel)]="studentInfo.studentId" placeholder="Mã số SV" readonly />
           </div>
-          
         </div>
 
 
         <h3>Thông tin yêu cầu </h3>
         <div class="row form-group">
-          <div class="col-md-3">
+          <div class="col-md-5 col-12">
             <label class="badge badge-dark">Loại yêu cầu</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Yêu cầu" />
+            <select  class="form-control" [(ngModel)]="studentTask.requestId" > 
+              <option value="0">--Chọn--</option>
+              <option *ngFor="let item of requestTypes" [value]="item.id">{{item.name}}</option>
+            </select>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 col-6">
             <label class="badge badge-dark">Số lượng</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Số lượng" readonly/>
+            <input type="number" class="form-control" [(ngModel)]="studentTask.quantity" placeholder="Số lượng" />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4 col-6">
             <label class="badge badge-dark">Ghi chú</label>
-            <input type="text" name="updateBy" class="form-control" placeholder="Ghi chú"  readonly/>
+            <textarea [(ngModel)]="studentTask.note" type="text" class="form-control" placeholder="Ghi chú"> </textarea>
           </div>
-          
         </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-success float-right" (click)="save()">
+          <i class="fa fa-save">
+          </i>
+          Lưu
+        </button>
       </div>
     </div>
   </div>

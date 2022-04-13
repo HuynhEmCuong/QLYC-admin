@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { UserToken } from '../../models/dtos/user-token';
 import { OperationResult } from '../../models/system/operation-result';
 import { OperationFileResult } from '../../models/system/opration-file-result';
-import { StudentTask, StudentTaskReport } from '../../models/task-request/request-task';
+import { StudentTask, StudentTaskReport, TaskRequest } from '../../models/task-request/request-task';
 import { BaseService } from '../general/base.service';
 import { AuthService } from '../system/auth.service';
 
@@ -18,6 +18,10 @@ export class TaskRequestService extends BaseService<StudentTask> {
 
   constructor(authService: AuthService, http: HttpClient, title: Title,) {
     super(authService, http, "StudentTask", title)
+  }
+
+   addTask(data: TaskRequest) {
+   return this.http.post<OperationResult>(`${API}/StudentTask/AddUserTask`, data).toPromise();
   }
 
   getStudentTask(id){
@@ -44,3 +48,5 @@ export class TaskRequestService extends BaseService<StudentTask> {
   }
 
 }
+
+

@@ -10,7 +10,7 @@ export class StudentTask {
     appUser: User;
 
     constructor(dataRequest) {
-        this.taskRequest = new TaskRequest(dataRequest);
+        this.taskRequest = new TaskRequest().mapData(dataRequest);
         this.appUser = new User();
         this.requestType = new RequestType();
         this.student = new Student();
@@ -28,32 +28,40 @@ export interface StudentTaskReport {
 
 
 export class TaskRequest {
-    id: number;
-    requestId: number;
+    id: number = 0;
+    requestId: number = 0;
     studentId: number;
-    receiverId: number | null;
+    receiverId: number | null ;
     note: string;
     fileName: string;
     filePath: string;
-    quantity: number;
+    quantity: number = 1;
     finishDate: string | null;
     assignDate: string | null;
     status: RequestStatus;
     createDate: string | null;
     modifyDate: string | null;
 
-    constructor(data: any) {
-        this.id = data.id;
-        this.requestId = data.requestId;
-        this.studentId = data.studentId;
-        this.receiverId = data.receiverId;
-        this.note = data.note;
-        this.fileName = data.fileName;
-        this.filePath = data.filePath;
-        this.quantity = data.quantity;
-        this.finishDate = data.finishDate;
-        this.assignDate = data.assignDate;
-        this.createDate = data.createDate;
-        this.status = data.status;
+    constructor() {
+
     }
+
+    mapData(data: any) {
+        let result: TaskRequest = new TaskRequest()
+        result.id = data.id;
+        result.requestId = data.requestId;
+        result.studentId = data.studentId;
+        result.receiverId = data.receiverId;
+        result.note = data.note;
+        result.fileName = data.fileName;
+        result.filePath = data.filePath;
+        result.quantity = data.quantity;
+        result.finishDate = data.finishDate;
+        result.assignDate = data.assignDate;
+        result.createDate = data.createDate;
+        result.status = data.status;
+        return result;
+    }
+
+
 }
