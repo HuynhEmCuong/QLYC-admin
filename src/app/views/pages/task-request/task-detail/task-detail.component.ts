@@ -34,7 +34,7 @@ export class TaskDetailComponent implements OnInit {
 
   updateData($event) {
     this.studentTask = $event;
-    this.steperTo(this.studentTask.taskRequest.status)
+    this.steperTo(this.studentTask.taskRequest.status === 4 ? 3 : this.studentTask.taskRequest.status)
   }
 
 

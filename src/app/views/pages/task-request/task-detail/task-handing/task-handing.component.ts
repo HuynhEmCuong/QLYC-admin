@@ -26,6 +26,23 @@ export class TaskHandingComponent implements OnInit {
     this.checkSave = this.studentTask.taskRequest.fileName ? false : true;
   }
 
+  cancelTask(): void {
+    this._alert.confirmInfo("Huỷ Yêu Cầu", "Bạn có muốn huỷ yêu cầu này", () => {
+      this._sniper.show();
+      this.studentTask.taskRequest.status = RequestStatus.disbaled;
+      this._taskRequest.update(this.studentTask.taskRequest).subscribe(res => {
+        if (res.success) {
+          this._alert.success("Thay đổi trạng thái thành công");
+          this.studentTask.taskRequest = res.data;
+          this.emitData();
+        } else {
+          this._alert.error("Lỗi hệ thống")
+        }
+        this._sniper.hide();
+      })
+    })
+  }
+
   onSelectFile(event: any) {
     this._sniper.show();
     if (event.target.files && event.target.files[0]) {
@@ -37,7 +54,7 @@ export class TaskHandingComponent implements OnInit {
       }
       const formData = new FormData();
       let nameRequest = this.studentTask.requestType.name.split(":");
-      let nameFile = this.studentTask.taskRequest.id + "-" + (nameRequest[1] ? nameRequest[1] : nameRequest[0])  ;
+      let nameFile = this.studentTask.taskRequest.id + "-" + (nameRequest[1] ? nameRequest[1] : nameRequest[0]);
       formData.append('file', file);
       this._taskRequest
         .uploadFile(formData, nameFile).pipe(
@@ -60,7 +77,7 @@ export class TaskHandingComponent implements OnInit {
     }
   }
 
-  removeFile() {
+  removeFile(): void {
     this._alert.confirmInfo("Cảnh báo", "Bạn có muốn xoá file", async () => {
       this._sniper.show();
       let result = await this._taskRequest.removeFile(this.studentTask.taskRequest.fileName).then();
@@ -71,18 +88,18 @@ export class TaskHandingComponent implements OnInit {
         this.checkSave = true;
       } else {
         this._alert.warning("Lỗi hệ thống")
-        
+
       }
       this._sniper.hide();
     })
   }
 
-  updateFinish() {
-    if (this.studentTask.taskRequest.fileName && this.studentTask.taskRequest.filePath) {
-      this._sniper.show();
-      this.studentTask.taskRequest.status = RequestStatus.complete;
-      let data = this.studentTask.taskRequest;
-      this._taskRequest.update(data).pipe().subscribe(res => {
+  updateFinish(): void {
+    this._sniper.show();
+    this.studentTask.taskRequest.status = RequestStatus.complete;
+    let data = this.studentTask.taskRequest;
+    this._taskRequest.update(data).pipe()
+      .subscribe(res => {
         if (res.success) {
           this.studentTask.taskRequest = res.data;
           this._alert.success("Cập nhật thành  công ")
@@ -95,14 +112,25 @@ export class TaskHandingComponent implements OnInit {
         console.log(error);
         this._alert.error("Lỗi hệ thống")
         this._sniper.hide();
-      }
-      )
-    } else {
-      this._alert.error("File không được để trống")
-      return
-    }
+      })
   }
-  emitData() {
+  emitData(): void {
     this.data.emit(this.studentTask)
+  }
+
+  updateNotUser(): void {
+    this._sniper.show();
+    this._taskRequest.updateNote(this.studentTask.taskRequest).subscribe(res => {
+      if (res.success) {
+        this._alert.success("Cập nhật thành công");
+        this._sniper.hide();
+        return;
+      } else {
+        this._alert.error("Lỗi hệ thống");
+
+        this._sniper.hide();
+        return;
+      }
+    }, error => { console.log(error) })
   }
 }

@@ -18,7 +18,7 @@
     </div>
   </div>
 
- <div class="task  mt-3">
+  <div class="task  mt-3">
     <h3> Thông tin yêu cầu</h3>
     <table class="table table-bordered">
       <thead>
@@ -46,12 +46,31 @@
           </td>
           <td>
             <button class="btn btn-success" (click)="updateFinish()">
-              Hoàn thành
+             <i class="fa fa-check"></i> Hoàn thành
+            </button>
+
+            <button class="btn btn-danger m-md-2" (click)="cancelTask()">
+              <i class="fa fa-times"></i>
+              Huỷ 
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="mt-3">
+    <h3>Ghi chú dành cho chuyên viên</h3>
+    <div class="row form-group">
+      <div class="col-6">
+        <textarea  class="form-control" cols="20" rows="3" [(ngModel)]="studentTask.taskRequest.noteUser"></textarea>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-6">
+       <button class="btn btn-outline-success" (click)="updateNotUser()"><i class="fa fa-save"></i> Lưu</button>
+      </div>
+    </div>
   </div>
 </div>
 

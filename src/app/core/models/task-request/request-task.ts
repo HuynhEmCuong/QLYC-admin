@@ -38,9 +38,12 @@ export class TaskRequest {
     quantity: number = 1;
     finishDate: string | null;
     assignDate: string | null;
+    intendTime:string |null;
     status: RequestStatus =RequestStatus.received;
     createDate: string | null;
     modifyDate: string | null;
+    noteUser:string  ="";
+    requestType:RequestType;
 
     constructor() {
 
@@ -60,6 +63,8 @@ export class TaskRequest {
         result.assignDate = data.assignDate;
         result.createDate = data.createDate;
         result.status = data.status;
+        result.noteUser =data.noteUser;
+        result.intendTime = data.intendTime;
         return result;
     }
 

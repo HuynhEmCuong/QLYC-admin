@@ -45,6 +45,7 @@ export class TaskReceiveComponent implements OnInit {
     //Update status and reciver 
     this.studentTask.taskRequest.receiverId = +this.userId;
     this.studentTask.taskRequest.status = RequestStatus.doing;
+    this.studentTask.taskRequest.requestType = this.studentTask.requestType;
     this._taskRequest.update(this.studentTask.taskRequest).subscribe(res => {
       if (res.success) {
         this._sniper.hide();
