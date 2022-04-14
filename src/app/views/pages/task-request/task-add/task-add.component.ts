@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { debounceTime } from 'rxjs/operators';
 import { Student } from 'src/app/core/models/student/student';
 import { StudentTask, TaskRequest } from 'src/app/core/models/task-request/request-task';
@@ -23,7 +24,8 @@ export class TaskAddComponent implements OnInit {
     private readonly _requestTypeService: RequestTypeService,
     private readonly _studentService: StudentService,
     private readonly _alertService: AlertifyService,
-    private readonly _taskRequestService: TaskRequestService
+    private readonly _taskRequestService: TaskRequestService,
+    private _sniper: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -57,21 +59,22 @@ export class TaskAddComponent implements OnInit {
 
   async save() {
     if (this.studentTask.requestId) {
+      this._sniper.show();
       this.studentTask.studentId = this.studentInfo.id;
       const result = await this._taskRequestService.addTask(this.studentTask);
       if (result.success) {
         this._alertService.success("Thêm thành công");
         this.studentInfo = new Student();
         this.studentTask = new TaskRequest();
+        this._sniper.hide();
         return;
       } else {
         this._alertService.error("Lỗi hệ thống");
+        this._sniper.hide();
         return;
       }
-
     } else {
       this._alertService.error("Chọn loại yêu cầu");
-      return
     }
   }
 }

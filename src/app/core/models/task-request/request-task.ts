@@ -38,7 +38,7 @@ export class TaskRequest {
     quantity: number = 1;
     finishDate: string | null;
     assignDate: string | null;
-    status: RequestStatus;
+    status: RequestStatus =RequestStatus.received;
     createDate: string | null;
     modifyDate: string | null;
 
