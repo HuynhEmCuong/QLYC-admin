@@ -35,6 +35,8 @@ export class TaskRequest {
     note: string;
     fileName: string;
     filePath: string;
+    filePathStudent:string;
+    fileNameStudent:string;
     quantity: number = 1;
     finishDate: string | null;
     assignDate: string | null;
@@ -65,6 +67,8 @@ export class TaskRequest {
         result.status = data.status;
         result.noteUser =data.noteUser;
         result.intendTime = data.intendTime;
+        result.fileNameStudent =data.fileNameStudent;
+        result.filePathStudent =data.filePathStudent;
         return result;
     }
 

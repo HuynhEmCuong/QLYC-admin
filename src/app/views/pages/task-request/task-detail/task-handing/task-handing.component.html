@@ -26,6 +26,7 @@
           <th>Loại yêu cầu</th>
           <th>Miêu tả</th>
           <th>Số lượng</th>
+          <th>File minh chứng</th>
           <th>Trạng thái</th>
           <th>Ghi chú</th>
           <th>File</th>
@@ -37,6 +38,9 @@
           <td>{{studentTask.requestType.name}}</td>
           <td>{{studentTask.requestType.description}}</td>
           <td>{{studentTask.taskRequest.quantity}}</td>
+          <td><a [href]="linkFileAPI+studentTask.taskRequest.filePathStudent" target="_bank">
+              {{studentTask.taskRequest.fileNameStudent || "" |compactFile}}
+            </a></td>
           <td>{{studentTask.taskRequest.status | taskstatus}}</td>
           <td>{{studentTask.taskRequest.note}}</td>
           <td *ngIf="checkSave  ; else infoFile">
@@ -46,12 +50,12 @@
           </td>
           <td>
             <button class="btn btn-success" (click)="updateFinish()">
-             <i class="fa fa-check"></i> Hoàn thành
+              <i class="fa fa-check"></i> Hoàn thành
             </button>
 
             <button class="btn btn-danger m-md-2" (click)="cancelTask()">
               <i class="fa fa-times"></i>
-              Huỷ 
+              Huỷ
             </button>
           </td>
         </tr>
@@ -63,12 +67,12 @@
     <h3>Ghi chú dành cho chuyên viên</h3>
     <div class="row form-group">
       <div class="col-6">
-        <textarea  class="form-control" cols="20" rows="3" [(ngModel)]="studentTask.taskRequest.noteUser"></textarea>
+        <textarea class="form-control" cols="20" rows="3" [(ngModel)]="studentTask.taskRequest.noteUser"></textarea>
       </div>
     </div>
     <div class="row form-group">
       <div class="col-6">
-       <button class="btn btn-outline-success" (click)="updateNotUser()"><i class="fa fa-save"></i> Lưu</button>
+        <button class="btn btn-outline-success" (click)="updateNotUser()"><i class="fa fa-save"></i> Lưu</button>
       </div>
     </div>
   </div>

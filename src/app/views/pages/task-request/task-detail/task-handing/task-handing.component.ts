@@ -5,7 +5,10 @@ import { RequestStatus } from 'src/app/core/enums/requestStatus.enum';
 import { StudentTask } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import { TaskRequestService } from 'src/app/core/services/task-request/task-request.service';
+import { environment } from 'src/environments/environment';
 
+
+const API = environment.apiUrl
 @Component({
   selector: 'app-task-handing',
   templateUrl: './task-handing.component.html',
@@ -16,6 +19,7 @@ export class TaskHandingComponent implements OnInit {
   @Output() data = new EventEmitter<StudentTask>()
   fileNameOrgin: string;
   checkSave: boolean = true
+  linkFileAPI: string = API;
   constructor(
     private readonly _alert: AlertifyService,
     private readonly _taskRequest: TaskRequestService,
