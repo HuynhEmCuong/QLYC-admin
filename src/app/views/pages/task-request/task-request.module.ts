@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { TaskCompleteComponent } from "./task-detail/task-complete/task-complete.component";
 import { TaskAddComponent } from "./task-add/task-add.component";
+import { NoteTaskComponent } from "./task-detail/task-handing/note-task/note-task.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -31,6 +32,7 @@ import { TaskAddComponent } from "./task-add/task-add.component";
         TaskListComponent,
         TaskRequestComponent,
         TaskDetailComponent,
+        NoteTaskComponent,
         TaskReceiveComponent,
         TaskHandingComponent,
         TaskCompleteComponent,

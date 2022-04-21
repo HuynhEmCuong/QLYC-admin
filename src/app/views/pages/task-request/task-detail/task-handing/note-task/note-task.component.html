@@ -1,0 +1,50 @@
+<div class="mt-3">
+  <h3>Ghi chú dành cho chuyên viên</h3>
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-12">
+          <textarea [(ngModel)]="noteTask.note" class="form-control" cols="15" rows="2"></textarea>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-outline-success" (click)="addNoteTask()"><i class="fa fa-save"></i> Lưu</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td colspan="4" style="text-align: center; font-size: 18px; font-weight: bold;">
+                  Danh sách ghi chú
+                </td>
+              </tr>
+              <tr>
+                <td>STT</td>
+                <td>Nội dung ghi chú</td>
+                <td>Người ghi chú</td>
+                <td>Ngày ghi chú</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dataNoteTasks.noteTasks">
+                <td>1</td>
+                <td>{{item.note}} </td>
+                <td>{{item.userNote.name}}</td>
+                <td><span>{{item.createDate | date:"dd/MM/yyyy HH:mm" }}</span></td>
+              </tr>
+              <tr *ngIf="dataNoteTasks.noteTasks.length ==0">
+                <td colspan="4">
+                  <p class="noNote">Không có ghi chú nào</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

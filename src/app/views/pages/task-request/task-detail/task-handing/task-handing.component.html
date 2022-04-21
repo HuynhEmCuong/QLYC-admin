@@ -62,20 +62,7 @@
       </tbody>
     </table>
   </div>
-
-  <div class="mt-3">
-    <h3>Ghi chú dành cho chuyên viên</h3>
-    <div class="row form-group">
-      <div class="col-6">
-        <textarea class="form-control" cols="20" rows="3" [(ngModel)]="studentTask.taskRequest.noteUser"></textarea>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-6">
-        <button class="btn btn-outline-success" (click)="updateNotUser()"><i class="fa fa-save"></i> Lưu</button>
-      </div>
-    </div>
-  </div>
+  <app-note-task [dataNoteTasks]="dataNoteTask"></app-note-task>
 </div>
 
 <ng-template #infoFile>

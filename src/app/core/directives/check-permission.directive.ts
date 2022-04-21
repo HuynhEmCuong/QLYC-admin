@@ -13,7 +13,6 @@ export class CheckPermissionDirective implements OnInit {
 
   ) { }
   ngOnInit(): void {
-    debugger
     this.viewContainer.clear();
     if (this.auth.checkRole()) {
       this.viewContainer.createEmbeddedView(this.templateRef);

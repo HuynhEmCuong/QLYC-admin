@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { tap } from 'rxjs/operators';
 import { RequestStatus } from 'src/app/core/enums/requestStatus.enum';
+import { NoteTask } from 'src/app/core/models/noteTask/noteTask';
 import { StudentTask } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import { TaskRequestService } from 'src/app/core/services/task-request/task-request.service';
@@ -14,17 +15,22 @@ const API = environment.apiUrl
   templateUrl: './task-handing.component.html',
   styleUrls: ['./task-handing.component.css']
 })
-export class TaskHandingComponent implements OnInit {
+export class TaskHandingComponent implements OnInit, OnChanges {
   @Input() studentTask: StudentTask;
   @Output() data = new EventEmitter<StudentTask>()
   fileNameOrgin: string;
   checkSave: boolean = true
   linkFileAPI: string = API;
+  dataNoteTask: DataNoteTask;
   constructor(
     private readonly _alert: AlertifyService,
     private readonly _taskRequest: TaskRequestService,
     private readonly _sniper: NgxSpinnerService,
   ) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dataNoteTask = new DataNoteTask(this.studentTask);
+
+  }
 
   ngOnInit() {
     this.checkSave = this.studentTask.taskRequest.fileName ? false : true;
@@ -121,20 +127,16 @@ export class TaskHandingComponent implements OnInit {
   emitData(): void {
     this.data.emit(this.studentTask)
   }
+}
 
-  updateNotUser(): void {
-    this._sniper.show();
-    this._taskRequest.updateNote(this.studentTask.taskRequest).subscribe(res => {
-      if (res.success) {
-        this._alert.success("Cập nhật thành công");
-        this._sniper.hide();
-        return;
-      } else {
-        this._alert.error("Lỗi hệ thống");
+export class DataNoteTask {
+  userId: number;
+  studentTaskId: number;
+  noteTasks: NoteTask[]
+  constructor(data: StudentTask) {
+    this.userId = data.appUser.id;
+    this.studentTaskId = data.taskRequest.id;
+    this.noteTasks = data.taskRequest.noteTasks;
 
-        this._sniper.hide();
-        return;
-      }
-    }, error => { console.log(error) })
   }
 }

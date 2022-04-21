@@ -1,4 +1,5 @@
 import { RequestStatus } from "../../enums/requestStatus.enum";
+import { NoteTask } from "../noteTask/noteTask";
 import { Student } from "../student/student";
 import { User } from "../system/user";
 import { RequestType } from "./request-type";
@@ -44,8 +45,8 @@ export class TaskRequest {
     status: RequestStatus =RequestStatus.received;
     createDate: string | null;
     modifyDate: string | null;
-    noteUser:string  ="";
     requestType:RequestType;
+    noteTasks:NoteTask[];
 
     constructor() {
 
@@ -65,10 +66,10 @@ export class TaskRequest {
         result.assignDate = data.assignDate;
         result.createDate = data.createDate;
         result.status = data.status;
-        result.noteUser =data.noteUser;
         result.intendTime = data.intendTime;
         result.fileNameStudent =data.fileNameStudent;
         result.filePathStudent =data.filePathStudent;
+        result.noteTasks = data.noteTasks;
         return result;
     }
 
