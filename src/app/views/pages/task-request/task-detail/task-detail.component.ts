@@ -16,7 +16,6 @@ export class TaskDetailComponent implements OnInit {
   ) {
     this._routeActive.data.subscribe((res) => {
       this.studentTask = new StudentTask(res.task);
-      console.log(this.studentTask.taskRequest);
       this.studentTask.appUser = res.task.appUser
       this.studentTask.requestType = res.task.requestType
       this.studentTask.student = res.task.student

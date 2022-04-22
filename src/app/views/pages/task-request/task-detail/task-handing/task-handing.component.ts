@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { tap } from 'rxjs/operators';
 import { RequestStatus } from 'src/app/core/enums/requestStatus.enum';
 import { NoteTask } from 'src/app/core/models/noteTask/noteTask';
+import { User } from 'src/app/core/models/system/user';
 import { StudentTask } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import { TaskRequestService } from 'src/app/core/services/task-request/task-request.service';
@@ -130,11 +131,11 @@ export class TaskHandingComponent implements OnInit, OnChanges {
 }
 
 export class DataNoteTask {
-  userId: number;
+  user: User;
   studentTaskId: number;
   noteTasks: NoteTask[]
   constructor(data: StudentTask) {
-    this.userId = data.appUser.id;
+    this.user = data.appUser;
     this.studentTaskId = data.taskRequest.id;
     this.noteTasks = data.taskRequest.noteTasks;
 
