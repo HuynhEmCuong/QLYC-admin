@@ -8,10 +8,8 @@ export class NoteTask {
   note: string = "";
   userNote: User;
 
-  constructor(taskId: number, userNoteId: number) {
-    this.studentTaskId = taskId;
-    this.userNoteId = userNoteId;
-
+  constructor() {
+  
   }
 
 }
