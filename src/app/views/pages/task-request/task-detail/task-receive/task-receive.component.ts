@@ -51,6 +51,7 @@ export class TaskReceiveComponent implements OnInit {
         this._sniper.hide();
         this.studentTask.appUser = res.data.appUser;
         this.studentTask.taskRequest.assignDate = res.data.assignDate;
+        this.studentTask.taskRequest.intendTime  = res.data.intendTime;
         this._alert.success("Update thành công")
         this.emitData()
       } else {

@@ -26,6 +26,7 @@
           <th>Loại yêu cầu</th>
           <th>Miêu tả</th>
           <th>Số lượng</th>
+          <th>Ngày dự kiến hoàn thành</th>
           <th>File minh chứng</th>
           <th>Trạng thái</th>
           <th>Ghi chú</th>
@@ -38,6 +39,7 @@
           <td>{{studentTask.requestType.name}}</td>
           <td>{{studentTask.requestType.description}}</td>
           <td>{{studentTask.taskRequest.quantity}}</td>
+          <td>{{studentTask.taskRequest.intendTime | date:"dd/MM/yyyy"}}</td>
           <td><a [href]="linkFileAPI+studentTask.taskRequest.filePathStudent" target="_bank">
               {{studentTask.taskRequest.fileNameStudent || "" |compactFile}}
             </a></td>

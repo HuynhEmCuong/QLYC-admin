@@ -21,7 +21,7 @@ export class TaskHandingComponent implements OnInit, OnChanges {
   @Output() data = new EventEmitter<StudentTask>()
   fileNameOrgin: string;
   checkSave: boolean = true
-  linkFileAPI: string = API;
+  linkFileAPI: string = API+"/";
   dataNoteTask: DataNoteTask;
   constructor(
     private readonly _alert: AlertifyService,
