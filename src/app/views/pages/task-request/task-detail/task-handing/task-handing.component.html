@@ -18,6 +18,26 @@
     </div>
   </div>
 
+  <div class="row form-group">
+    <div class="col-4">
+    
+    </div>
+    <div class="col-4">
+     
+    </div>
+    <div class="col-4" *checkPermission>
+      <label class="badge badge-dark">Chuyển  việc cho</label>
+      <!-- <select class="form-control" id="User-task" name="User-task" [(ngModel)]="userId">
+        <option *ngFor="let item of users" [value]="item.id">{{item.name}}</option>
+      </select> -->
+
+      <select name="abc" id="aet" class="form-control">
+        <option value="123">123</option>
+      </select>
+    </div>
+  </div>
+
+
   <div class="task  mt-3">
     <h3> Thông tin yêu cầu</h3>
     <table class="table table-bordered">
