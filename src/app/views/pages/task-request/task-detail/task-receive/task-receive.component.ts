@@ -16,7 +16,7 @@ import { TaskRequestService } from 'src/app/core/services/task-request/task-requ
 })
 export class TaskReceiveComponent implements OnInit {
   userId: string;
-  users: User[];
+  @Input() users: User[];
   @Input() studentTask: StudentTask 
   @Output() data = new EventEmitter<StudentTask>()
 
@@ -24,21 +24,16 @@ export class TaskReceiveComponent implements OnInit {
     private _taskRequest: TaskRequestService,
     private _alert: AlertifyService,
     private _auth: AuthService,
-    private _user: UserService,
+   
     private _sniper: NgxSpinnerService
   ) {
     this._auth.currentUser$.subscribe(res => this.userId = res.id);
   }
 
   ngOnInit() {
-    this.getAllUser();
   }
 
-  getAllUser() {
-    this._user.getAll().subscribe(res => {
-      this.users = res;
-    })
-  }
+  
 
   receiveTask() {
     this._sniper.show();

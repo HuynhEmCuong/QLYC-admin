@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { NoteTask } from 'src/app/core/models/noteTask/noteTask';
+import { StudentTask } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import { NoteTaskService } from 'src/app/core/services/task-request/note-task.service';
 import { DataNoteTask } from '../task-handing.component';
@@ -16,30 +17,29 @@ import { DataNoteTask } from '../task-handing.component';
   styleUrls: ['./note-task.component.css'],
 })
 export class NoteTaskComponent implements OnInit, OnChanges {
-  @Input() dataNoteTasks: DataNoteTask;
-  noteTask: NoteTask;
+  @Input() studentTask: StudentTask;
+  noteTask: NoteTask = new NoteTask();
   constructor(
     private readonly _noteTaskSv: NoteTaskService,
     private readonly _alert: AlertifyService
-  ) {}
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.refreshData();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   async addNoteTask() {
     if (this.noteTask.note) {
-      const userNote = this.dataNoteTasks.user;
-
+      const userNote = this.studentTask.appUser;
       this.noteTask.userNoteId = userNote.id;
-      this.noteTask.studentTaskId = this.dataNoteTasks.studentTaskId;
+      this.noteTask.studentTaskId = this.studentTask.taskRequest.id;
       const result = await this._noteTaskSv.addTask(this.noteTask).then();
       if (result.success) {
         this._alert.success('Thêm thành công');
         result.data.userNote = userNote;
-        this.dataNoteTasks.noteTasks.unshift(result.data);
+        this.studentTask.taskRequest.noteTasks.unshift(result.data);
         this.refreshData();
         return;
       }
@@ -51,9 +51,9 @@ export class NoteTaskComponent implements OnInit, OnChanges {
 
   private refreshData() {
     this.noteTask = new NoteTask();
-    this.noteTask.studentTaskId = this.dataNoteTasks.studentTaskId;
-    this.noteTask.userNoteId = this.dataNoteTasks.user
-      ? this.dataNoteTasks.user.id
+    this.noteTask.studentTaskId = this.studentTask.taskRequest.id;
+    this.noteTask.userNoteId = this.studentTask.appUser
+      ? this.studentTask.appUser.id
       : 0;
   }
 }

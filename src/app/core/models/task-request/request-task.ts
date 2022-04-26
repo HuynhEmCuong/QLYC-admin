@@ -32,21 +32,21 @@ export class TaskRequest {
     id: number = 0;
     requestId: number = 0;
     studentId: number;
-    receiverId: number | null ;
+    receiverId: number | null;
     note: string;
     fileName: string;
     filePath: string;
-    filePathStudent:string;
-    fileNameStudent:string;
+    filePathStudent: string;
+    fileNameStudent: string;
     quantity: number = 1;
     finishDate: string | null;
     assignDate: string | null;
-    intendTime:string |null;
-    status: RequestStatus =RequestStatus.received;
+    intendTime: string | null;
+    status: RequestStatus = RequestStatus.received;
     createDate: string | null;
     modifyDate: string | null;
-    requestType:RequestType;
-    noteTasks:NoteTask[];
+    requestType: RequestType;
+    noteTasks: NoteTask[] =[];
 
     constructor() {
 
@@ -67,8 +67,8 @@ export class TaskRequest {
         result.createDate = data.createDate;
         result.status = data.status;
         result.intendTime = data.intendTime;
-        result.fileNameStudent =data.fileNameStudent;
-        result.filePathStudent =data.filePathStudent;
+        result.fileNameStudent = data.fileNameStudent;
+        result.filePathStudent = data.filePathStudent;
         result.noteTasks = data.noteTasks;
         return result;
     }

@@ -30,7 +30,6 @@ export class TaskHandingComponent implements OnInit, OnChanges {
   ) { }
   ngOnChanges(changes: SimpleChanges): void {
     this.dataNoteTask = new DataNoteTask(this.studentTask);
-
   }
 
   ngOnInit() {
@@ -125,6 +124,7 @@ export class TaskHandingComponent implements OnInit, OnChanges {
         this._sniper.hide();
       })
   }
+  
   emitData(): void {
     this.data.emit(this.studentTask)
   }

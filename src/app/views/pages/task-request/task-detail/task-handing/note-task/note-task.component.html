@@ -29,13 +29,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of dataNoteTasks.noteTasks; index as i">
+              <tr *ngFor="let item of studentTask.taskRequest.noteTasks; index as i">
                 <td>{{i+1}}</td>
                 <td>{{item.note}} </td>
                 <td>{{item.userNote.name}}</td>
                 <td><span>{{item.createDate | date:"dd/MM/yyyy HH:mm" }}</span></td>
               </tr>
-              <tr *ngIf="dataNoteTasks.noteTasks.length ==0">
+              <tr *ngIf="studentTask.taskRequest.noteTasks.length ==0">
                 <td colspan="4">
                   <p class="noNote">Không có ghi chú nào</p>
                 </td>
