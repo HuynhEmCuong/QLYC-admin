@@ -19,21 +19,12 @@
   </div>
 
   <div class="row form-group">
-    <div class="col-4">
-    
-    </div>
-    <div class="col-4">
-     
-    </div>
     <div class="col-4" *checkPermission>
-      <label class="badge badge-dark">Chuyển  việc cho</label>
-      <!-- <select class="form-control" id="User-task" name="User-task" [(ngModel)]="userId">
+      <label class="badge badge-dark">Chuyển việc cho</label>
+      <select class="form-control" id="User-task" name="User-task" [(ngModel)]="userReciveTask">
         <option *ngFor="let item of users" [value]="item.id">{{item.name}}</option>
-      </select> -->
-
-      <select name="abc" id="aet" class="form-control">
-        <option value="123">123</option>
       </select>
+      <button (click)="changeTask()" class="btn btn-success mt-3 mt-3"> <i class="fa fa-save mr-1"></i>Cập nhật</button>
     </div>
   </div>
 

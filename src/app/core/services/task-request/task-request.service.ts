@@ -48,8 +48,12 @@ export class TaskRequestService extends BaseService<StudentTask> {
     return this.http.get<OperationResult>(`${API}/StudentTask/CheckTaskOfUser?userId=${userId}&taskId=${taskId}`);
   }
 
-  updateNote(data: TaskRequest) :Observable<OperationResult> {
-    return this.http.put<OperationResult>(`${API}/StudentTask/UpdateNote`,data);
+  updateNote(data: TaskRequest): Observable<OperationResult> {
+    return this.http.put<OperationResult>(`${API}/StudentTask/UpdateNote`, data);
+  }
+
+  changeTaskForUser(data: TaskRequest): Observable<OperationResult> {
+    return this.http.put<OperationResult>(`${API}/StudentTask/ChangeTaskForUser`, data);
   }
 
 }

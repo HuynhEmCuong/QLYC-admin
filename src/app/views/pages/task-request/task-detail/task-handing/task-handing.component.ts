@@ -4,7 +4,7 @@ import { tap } from 'rxjs/operators';
 import { RequestStatus } from 'src/app/core/enums/requestStatus.enum';
 import { NoteTask } from 'src/app/core/models/noteTask/noteTask';
 import { User } from 'src/app/core/models/system/user';
-import { StudentTask } from 'src/app/core/models/task-request/request-task';
+import { StudentTask, TaskRequest } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import { TaskRequestService } from 'src/app/core/services/task-request/task-request.service';
 import { environment } from 'src/environments/environment';
@@ -16,24 +16,25 @@ const API = environment.apiUrl
   templateUrl: './task-handing.component.html',
   styleUrls: ['./task-handing.component.css']
 })
-export class TaskHandingComponent implements OnInit, OnChanges {
+export class TaskHandingComponent implements OnInit {
   @Input() studentTask: StudentTask;
-  @Output() data = new EventEmitter<StudentTask>()
+  @Output() data = new EventEmitter<StudentTask>();
+  @Input() users: User[];
   fileNameOrgin: string;
   checkSave: boolean = true
-  linkFileAPI: string = API+"/";
-  dataNoteTask: DataNoteTask;
+  linkFileAPI: string = API + "/";
+
+  userReciveTask: number = 1;
   constructor(
     private readonly _alert: AlertifyService,
     private readonly _taskRequest: TaskRequestService,
     private readonly _sniper: NgxSpinnerService,
   ) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.dataNoteTask = new DataNoteTask(this.studentTask);
-  }
+
 
   ngOnInit() {
     this.checkSave = this.studentTask.taskRequest.fileName ? false : true;
+
   }
 
   cancelTask(): void {
@@ -124,20 +125,39 @@ export class TaskHandingComponent implements OnInit, OnChanges {
         this._sniper.hide();
       })
   }
-  
+
   emitData(): void {
     this.data.emit(this.studentTask)
   }
-}
 
-export class DataNoteTask {
-  user: User;
-  studentTaskId: number;
-  noteTasks: NoteTask[]
-  constructor(data: StudentTask) {
-    this.user = data.appUser;
-    this.studentTaskId = data.taskRequest.id;
-    this.noteTasks = data.taskRequest.noteTasks;
-
+  changeTask() {
+    this._alert.confirm("Cảnh báo", "Bạn có muốn thay đổi người xử lý công việc", () => {
+      if (this.userReciveTask == +this.studentTask.appUser.id) {
+        this._alert.error(`Chuyên viên ${this.studentTask.appUser.name} đang xử lý công việc này`);
+        return;
+      } else {
+        this._sniper.show();
+        this.studentTask.taskRequest.receiverId = this.userReciveTask;
+        this.studentTask.taskRequest.requestType = this.studentTask.requestType;
+        this._taskRequest.changeTaskForUser(this.studentTask.taskRequest).subscribe(res => {
+          if(res.success){
+            this._sniper.hide();
+            this._alert.success("Cập nhật thành công");
+            this.studentTask.appUser = res.data.appUser;
+            this.studentTask.taskRequest = new TaskRequest().mapData( res.data);
+            return
+          }else {
+            this._sniper.hide();
+            this._alert.error("Lỗi hệ thống");
+            return;
+          }
+          
+        })
+      }
+    })
   }
+
+
 }
+
+

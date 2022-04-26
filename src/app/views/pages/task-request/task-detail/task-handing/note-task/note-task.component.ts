@@ -9,7 +9,6 @@ import { NoteTask } from 'src/app/core/models/noteTask/noteTask';
 import { StudentTask } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import { NoteTaskService } from 'src/app/core/services/task-request/note-task.service';
-import { DataNoteTask } from '../task-handing.component';
 
 @Component({
   selector: 'app-note-task',
