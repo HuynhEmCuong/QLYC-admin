@@ -1,7 +1,7 @@
 <div class="mt-3">
   <h3>Ghi chú dành cho chuyên viên</h3>
   <div class="row">
-    <div class="col-6">
+    <div class="col-6" *checkPermissionTask="studentTask.taskRequest.receiverId">
       <div class="row">
         <div class="col-12">
           <textarea [(ngModel)]="noteTask.note" class="form-control" cols="15" rows="2"></textarea>

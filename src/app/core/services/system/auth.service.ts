@@ -98,6 +98,18 @@ export class AuthService {
       return false;
   }
 
+  checkTask(userIdRecevier: string): boolean {
+    
+    let user: UserToken = JSON.parse(localStorage.getItem("user"));
+
+    if (user.id == userIdRecevier || user.roles.find(role => role.toUpperCase() == 'ADMIN')) {
+      return true;
+    }
+    else {
+      return false
+    }
+  }
+
   forgotPassword = (email) => this.http.get(`${API_URL}/Authen/ForgotPassword?Email=${email}`);
 
   resetPassword = (id) => this.http.get(`${API_URL}/Authen/ResetPassword?id=${id}`);

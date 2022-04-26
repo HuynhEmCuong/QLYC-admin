@@ -58,18 +58,22 @@
           <td>{{studentTask.taskRequest.note}}</td>
           <td *ngIf="checkSave  ; else infoFile">
             <label class="btn btn-upload"><i class="fa fa-upload"></i> Tải lên
-              <input type="file" accept=".pdf" style="display: none" (change)="onSelectFile($event)" />
+              <input type="file" accept=".pdf" *checkPermissionTask="studentTask.taskRequest.receiverId"
+                style="display: none" (change)="onSelectFile($event)" />
             </label>
           </td>
           <td>
-            <button class="btn btn-success" (click)="updateFinish()">
-              <i class="fa fa-check"></i> Hoàn thành
-            </button>
+            <div *checkPermissionTask="studentTask.taskRequest.receiverId">
+              <button class="btn btn-success" (click)="updateFinish()">
+                <i class="fa fa-check"></i> Hoàn thành
+              </button>
 
-            <button class="btn btn-danger m-md-2" (click)="cancelTask()">
-              <i class="fa fa-times"></i>
-              Huỷ
-            </button>
+              <button class="btn btn-danger m-md-2" (click)="cancelTask()">
+                <i class="fa fa-times"></i>
+                Huỷ
+              </button>
+            </div>
+
           </td>
         </tr>
       </tbody>

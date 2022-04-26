@@ -63,17 +63,6 @@ export class TaskListComponent implements OnInit {
 
   onReditDetail(e) {
     let data = e.row.data;
-    if (data.status == 2) {
-      if (+this.user.id === data.receiverId || +this.user.id == 1) {
-        this.route.navigateByUrl(`/pages/task-request/detail/${data.id}`)
-
-      } else {
-        this._alert.warning("Bạn không được quyền vào công việc này")
-        return;
-      }
-    } else {
-      this.route.navigateByUrl(`/pages/task-request/detail/${data.id}`)
-    }
-
+    this.route.navigateByUrl(`/pages/task-request/detail/${data.id}`)
   }
 }
