@@ -1,0 +1,53 @@
+<div class="row page-titles">
+  <div class="col-md-5 col-8 align-self-center">
+    <h3 class="text-themecolor">Quản lý yêu cầu</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/pages/dashboard']">Trang chủ</a></li>
+      <li class="breadcrumb-item active">Danh sách yêu cầu</li>
+    </ol>
+  </div>
+  <div class="col-md-7">
+
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 form-group text-right">
+        <!-- <button class="btn btn-info mr-1">
+          <span class="btn-label"> <i class="fa fa-plus"></i></span> Thêm mới
+        </button> -->
+        <!-- <button class="btn btn-secondary mr-1" (click)="reloadData()">
+          <span class="btn-label"> <i class="fa fa-sync"></i></span> Làm mới
+        </button> -->
+      </div>
+      <div class="col-12">
+        <div class="table-responsive">
+          <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnAutoWidth]="true"
+            [remoteOperations]="true" [showRowLines]="true" [showColumnLines]="true" class="m-grid-5"
+            [allowColumnResizing]="true" noDaText="Không có dữ liệu !" [focusedRowEnabled]="true"
+            [columnHidingEnabled]="true" columnResizingMode="widget"
+            keyExpr="course_ID"
+            >
+
+            <!-- Option grid -->
+            <dxo-sorting mode="single">
+              <!-- or "multiple" | "none" -->
+            </dxo-sorting>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5,10,25, 50, 100]"
+              [showPageSizeSelector]="true" [showNavigationButtons]="true" [showInfo]="true"
+              infoText="Trang #{0}. Tổng: {1} ({2} danh mục yêu cầu)">
+              ></dxo-pager>
+            <!-- End option grid -->
+            <dxi-column [width]=150 dataField="course_ID" caption="Mã môn học"></dxi-column>
+            <dxi-column [width]=150 dataField="course_Short_Name" caption="Tên môn học"></dxi-column>
+         
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
