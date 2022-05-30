@@ -10,8 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { DxListModule } from 'devextreme-angular';
 import { UploadMultipleComponent } from '../commons/upload-multiple/upload-multiple.component';
-import { HighchartsChartComponent } from 'highcharts-angular/lib/highcharts-chart.component';
-import { HighchartsChartModule } from 'highcharts-angular';
+import { HighchartsChartComponent, HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   imports: [

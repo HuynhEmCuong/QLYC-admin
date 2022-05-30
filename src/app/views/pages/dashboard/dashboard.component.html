@@ -1,44 +1,54 @@
 <div class="container-fluid pt-5" style="font-family: 'Times New Roman', Times, serif">
-   <div class="row">
-       <div class="col-3">
-           <div class="card recive">
-               <div class="card-body">
-                   <div class="info">
-                       <span class="data">{{reportTask.received}}</span>
-                   </div>
-                   <h3>Yêu cầu đã nhận</h3>
-               </div>
-           </div>
-       </div>
-       <div class="col-3">
-        <div class="card doing">
-            <div class="card-body">
-                <div class="info">
-                    <span class="data">{{reportTask.doing}}</span>
+    <div class="row">
+        <div class="col-3">
+            <div class="card recive">
+                <div class="card-body">
+                    <div class="info">
+                        <span class="data">{{reportTask.received}}</span>
+                    </div>
+                    <h3>Yêu cầu đã nhận</h3>
                 </div>
-                <h3>Yêu cầu đang xử lý</h3>
             </div>
         </div>
-    </div>
-    <div class="col-3">
-        <div class="card complete">
-            <div class="card-body">
-                <div class="info">
-                    <span class="data">{{reportTask.complete}}</span>
+        <div class="col-3">
+            <div class="card doing">
+                <div class="card-body">
+                    <div class="info">
+                        <span class="data">{{reportTask.doing}}</span>
+                    </div>
+                    <h3>Yêu cầu đang xử lý</h3>
                 </div>
-                <h3>Yêu cầu hoàn thành</h3>
             </div>
         </div>
-    </div>
-    <div class="col-3">
-        <div class="card disabled">
-            <div class="card-body">
-                <div class="info">
-                    <span class="data">{{reportTask.disbaled}}</span>
+        <div class="col-3">
+            <div class="card complete">
+                <div class="card-body">
+                    <div class="info">
+                        <span class="data">{{reportTask.complete}}</span>
+                    </div>
+                    <h3>Yêu cầu hoàn thành</h3>
                 </div>
-                <h3>Yêu cầu đã huỷ</h3>
             </div>
         </div>
+        <div class="col-3">
+            <div class="card disabled">
+                <div class="card-body">
+                    <div class="info">
+                        <span class="data">{{reportTask.disbaled}}</span>
+                    </div>
+                    <h3>Yêu cầu đã huỷ</h3>
+                </div>
+            </div>
+        </div>
+
+
     </div>
-   </div>
+
+    <div class="row">
+        <div class="col-12 chart">
+            <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart>
+        </div>
+    </div>
 </div>
