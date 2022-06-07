@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { UserToken } from '../../models/dtos/user-token';
 import { OperationResult } from '../../models/system/operation-result';
 import { OperationFileResult } from '../../models/system/opration-file-result';
-import { StudentTask, StudentTaskReport, TaskRequest } from '../../models/task-request/request-task';
+import { StudentTask,  TaskRequest } from '../../models/task-request/request-task';
 import { BaseService } from '../general/base.service';
 import { AuthService } from '../system/auth.service';
 
@@ -36,9 +36,6 @@ export class TaskRequestService extends BaseService<StudentTask> {
     return this.http.get<OperationResult>(`${API}/File/RemoveFile?fileName=${fileName}`).toPromise();
   }
 
-  getReport(): Observable<StudentTaskReport> {
-    return this.http.get<StudentTaskReport>(`${API}/StudentTask/ReportTask`)
-  }
 
 
   checkTaskOfUser(userId: number, taskId: number): Observable<OperationResult> {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentTaskReport } from 'src/app/core/models/task-request/request-task';
 import { AlertifyService } from 'src/app/core/services/general/alertify.service';
 import * as Highcharts from 'highcharts';
+import { StudentTaskReport } from 'src/app/core/models/reports/report-task';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
