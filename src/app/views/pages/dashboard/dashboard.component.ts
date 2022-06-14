@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
   }
+  
+  // Chart 
   highcharts = Highcharts;
 
   chartOptions = {
