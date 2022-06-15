@@ -28,6 +28,10 @@ const routes: Routes = [{
             path:'task-request',
             loadChildren : () =>import('./task-request/task-request.module').then(m => m.TaskRequestModule)
         },
+        {
+            path:'report',
+            loadChildren : () =>import('./reports/report.module').then(m => m.ReportModule)
+        },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         { path: '**', redirectTo: 'dashboard' },
     ]
