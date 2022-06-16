@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { DxDateBoxModule } from "devextreme-angular";
 import { HighchartsChartModule } from "highcharts-angular";
 import { SharedModule } from "src/app/core/shared/shared.module";
 import { ReportRoutingModule } from "./report-routing.module";
@@ -12,7 +13,8 @@ import { ReportComponent } from "./report.component";
         CommonModule,
         SharedModule,
         ReportRoutingModule,
-        HighchartsChartModule
+        HighchartsChartModule,
+        DxDateBoxModule
     ],
     declarations:[
         ReportComponent,

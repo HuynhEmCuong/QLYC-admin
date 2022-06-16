@@ -8446,6 +8446,11 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
 
 }
 
+.dx-field-label {
+  font-size: 14px !important;
+  color: #000000 !important;
+}
+
 .dx-placeholder{
   margin: -9px 4px !important;
   font-size: 14px !important;
