@@ -12,6 +12,11 @@ export class ReportUserComponent implements OnInit {
   highcharts: any = Highcharts;
   chartOptions: any =null;
   result: ReportUserChart = new ReportUserChart();
+  startDate :Date;
+  endDate:Date;
+
+  
+
   constructor(private readonly _reportService: ReportService) { }
 
 
@@ -26,6 +31,10 @@ export class ReportUserComponent implements OnInit {
       this.result = res;
       this.chartData();
     })
+
+  }
+
+  filter(){
 
   }
 
@@ -46,16 +55,16 @@ export class ReportUserComponent implements OnInit {
           text: null,
         },
       },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Số lượng công việc ',
-          align: 'high',
-        },
-        labels: {
-          overflow: 'justify',
-        },
-      },
+      // yAxis: {
+      //   min: 0,
+      //   title: {
+      //     text: 'Số lượng công việc ',
+      //     align: 'high',
+      //   },
+      //   labels: {
+      //     overflow: 'justify',
+      //   },
+      // },
       tooltip: {
         headerFormat: '<b>{point.x}</b><br/>',
         valueSuffix: ' Yêu cầu',
@@ -75,20 +84,21 @@ export class ReportUserComponent implements OnInit {
       },
       series: [
         {
-          color: '#25e70c',
+          color: '#3BE757',
           name: 'Hoàn thành',
           data: this.result.total_success,
         },
+       
         {
-          color: '#ffc107',
-          name: 'Đang xử lý',
-          data: this.result.total_process,
-        },
-        {
-          color: '#e70c0c',
+          color: '#EA260F',
           name: 'Trể hạn',
           data: this.result.total_late,
         },
+        // {
+        //   color: '#34AFF5',
+        //   name: 'Tổng ',
+        //   data: this.result.total,
+        // },
       ],
     };
   }

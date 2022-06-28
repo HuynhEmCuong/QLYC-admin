@@ -24,7 +24,7 @@
             <div class="dx-field">
               <div class="dx-field-label text-right">Ngày bắt đầu:</div>
               <div class="dx-field-value">
-                <dx-date-box type="date" pickerType="calendar" displayFormat="yyyy/MM/dd" stylingMode="outlined">
+                <dx-date-box type="date" [(value)]="startDate" pickerType="calendar" displayFormat="yyyy/MM/dd" stylingMode="outlined">
                 </dx-date-box>
               </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="dx-field">
               <div class="dx-field-label text-right">Ngày kết thúc:</div>
               <div class="dx-field-value">
-                <dx-date-box type="date" pickerType="calendar" displayFormat="yyyy/MM/dd" stylingMode="outlined">
+                <dx-date-box type="date" [(value)]="endDate" pickerType="calendar" displayFormat="yyyy/MM/dd" stylingMode="outlined">
                 </dx-date-box>
               </div>
             </div>

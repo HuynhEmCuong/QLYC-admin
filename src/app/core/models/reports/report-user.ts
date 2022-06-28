@@ -12,4 +12,6 @@ export class ReportUserChart {
     total_success: number[] = [];
     total_process: number[] = [];
     total_late: number[] = [];
+    total: number[] = [];
+    
 }
