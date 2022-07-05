@@ -1,5 +1,6 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { dateConvertToStringNoTimeZone } from 'src/app/core/common/helper';
 import { ReportUserChart } from 'src/app/core/models/reports/report-user';
 import { ReportService } from 'src/app/core/services/reports/report.service';
 
@@ -14,28 +15,38 @@ export class ReportUserComponent implements OnInit {
   result: ReportUserChart = new ReportUserChart();
   startDate :Date;
   endDate:Date;
-
+  dataSource:any;
   
 
   constructor(private readonly _reportService: ReportService) { }
 
 
   ngOnInit() {
-    this.getData();
+    // this.getData();
     this.chartData();
   }
 
 
   getData() {
     this._reportService.getReportUser().subscribe(res => {
-      this.result = res;
-      this.chartData();
+      this.dataSource = res
     })
 
   }
 
   filter(){
+    const startDate = dateConvertToStringNoTimeZone(this.startDate);
+    const endDate = dateConvertToStringNoTimeZone(this.endDate);
 
+    const parms = {
+      startDate :startDate,
+      endDate :endDate
+
+    }
+
+    this._reportService.getReportUser(parms).subscribe(res => {
+      this.dataSource = res
+    })
   }
 
 

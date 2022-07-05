@@ -110,3 +110,14 @@ export function withoutTime(date: Date): Date {
 }
 
 
+export function dateConvertToStringNoTimeZone(date?: Date) {
+  if (date == null) return null;
+  date = new Date(date);
+  var dd = String(date.getDate()).padStart(2, '0');
+  var mm = String(date.getMonth() + 1).padStart(2, '0');
+  var yyyy = date.getFullYear();
+  return yyyy + '-' + mm + '-' + dd ;
+
+}
+
+

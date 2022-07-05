@@ -1,9 +1,14 @@
 export class ReportUser {
     userId: number;
     userName: string;
+
     totalSuccess: number;
+    totalSuccessLate :number
+    
+    totalProceesingLate:number;
     totalProceesing: number;
-    totalLate: number;
+ 
+    totalDisable:number;
     total: number;
 }
 

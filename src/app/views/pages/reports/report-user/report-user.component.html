@@ -20,11 +20,15 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
+          <div class="col-12">
+            <h3>Lọc theo ngày </h3>
+          </div>
           <div class="col-4">
             <div class="dx-field">
               <div class="dx-field-label text-right">Ngày bắt đầu:</div>
               <div class="dx-field-value">
-                <dx-date-box type="date" [(value)]="startDate" pickerType="calendar" displayFormat="yyyy/MM/dd" stylingMode="outlined">
+                <dx-date-box type="date" [(value)]="startDate" pickerType="calendar" displayFormat="dd/MM/yyyy"
+                  stylingMode="outlined">
                 </dx-date-box>
               </div>
             </div>
@@ -34,15 +38,16 @@
             <div class="dx-field">
               <div class="dx-field-label text-right">Ngày kết thúc:</div>
               <div class="dx-field-value">
-                <dx-date-box type="date" [(value)]="endDate" pickerType="calendar" displayFormat="yyyy/MM/dd" stylingMode="outlined">
+                <dx-date-box type="date" [(value)]="endDate" pickerType="calendar" displayFormat="dd/MM/yyyy"
+                  stylingMode="outlined">
                 </dx-date-box>
               </div>
             </div>
           </div>
           <div class="col-4">
-            <button class="btn btn-success filter">
-              <i class="fa fa-filter" aria-hidden="true"></i> 
-              Lọc 
+            <button class="btn btn-success filter" (click)="filter()">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+              Lọc
             </button>
           </div>
         </div>
@@ -50,9 +55,77 @@
 
       </div>
       <div class="card-body">
-        <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+
+        <div class="table-responsive">
+          <dx-data-grid id="gridContainer" keyExpr="userId" [dataSource]="dataSource" [showBorders]="true"
+            [columnAutoWidth]="true" [showRowLines]="true" [showColumnLines]="true" class="m-grid-5"
+            [allowColumnResizing]="true" noDaText="Không có dữ liệu !" [focusedRowEnabled]="true"
+            columnResizingMode="widget">
+            <dxo-sorting mode="single">
+              <!-- or "multiple" | "none" -->
+            </dxo-sorting>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5,10,25, 50, 100]"
+              [showPageSizeSelector]="true" [showNavigationButtons]="true" [showInfo]="true"
+              infoText="Trang #{0}. Tổng: {1} ({2} danh mục yêu cầu)">
+              ></dxo-pager>
+
+            <dxi-column [width]=150 dataField="userName" caption="Họ và tên"></dxi-column>
+            <dxi-column dataField="total" caption="Tổng số công việc" sortOrder="desc"></dxi-column>
+
+            <dxi-column caption="Chưa hoàn thành">
+              <dxi-column caption="Đúng tiến độ" dataField="totalProceesing" dataType="number">
+
+              </dxi-column>
+              <dxi-column caption="Quá hạn" dataField="totalProceesingLate">
+
+              </dxi-column>
+
+            </dxi-column>
+            <dxi-column caption="Hoàn thành">
+              <dxi-column caption="Đúng tiến độ" dataField="totalSuccess">
+
+              </dxi-column>
+              <dxi-column caption="Chậm tiến độ" dataField="totalSuccessLate">
+
+              </dxi-column>
+
+            </dxi-column>
+
+            <dxi-column dataField="totalDisable" caption="Huỷ"></dxi-column>
+
+
+            <dxo-summary>
+              <dxi-total-item column="total" showInColumn="total" summaryType="sum" displayFormat="Tổng : {0}"
+                alignment="right">
+              </dxi-total-item>
+              <dxi-total-item column="totalProceesing" showInColumn="totalProceesing" summaryType="sum"
+                displayFormat="Đúng tiến độ : {0}" alignment="right">
+              </dxi-total-item>
+              <dxi-total-item column="totalProceesingLate" showInColumn="totalProceesingLate" summaryType="sum"
+                displayFormat="Quá hạn : {0}" alignment="right">
+              </dxi-total-item>
+              <dxi-total-item column="totalSuccess" showInColumn="totalSuccess" summaryType="sum"
+                displayFormat="Hoàn thành : {0}" alignment="right">
+              </dxi-total-item>
+              <dxi-total-item column="totalSuccessLate" showInColumn="totalSuccessLate" summaryType="sum"
+                displayFormat="Hoàn thành chậm : {0}" alignment="right">
+              </dxi-total-item>
+
+              <dxi-total-item column="totalDisable" showInColumn="totalDisable" summaryType="sum"
+                displayFormat="Huỷ : {0}" alignment="right">
+              </dxi-total-item>
+
+            </dxo-summary>
+          </dx-data-grid>
+
+        </div>
+
+        <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
           style="width: 100%; height: 100%; display: block;">
-        </highcharts-chart>
+        </highcharts-chart> -->
       </div>
     </div>
   </div>
